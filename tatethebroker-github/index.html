@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tate The Broker · Independent Insurance Broker</title>
+<meta name="description" content="Tate The Broker shops home, auto, business, life and umbrella insurance across a wide range of carriers. Get a quote or drop your dec page for a free policy review.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Tate The Broker">
+<meta property="og:description" content="Independent insurance broker. Get a quote or drop a dec, get my rec.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,600..900,0..100,0..1&family=Archivo:wdth,wght@62..125,500..900&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sticky deep-teal header; hash-routed "pages", each a stack of full-width bands.
+   Every hero is the dusk sky from Tate's bus photo, ending in the bus's white-over-blue two-tone paint split with its V. */
+:root{
+  /* Black ground with the bus's pale blue and cream as the accents. Single dark look by choice. */
+  --ink:#F3F1EC;
+  --muted:#9AA7AD;
+  --paper:#050607;      /* black */
+  --sand:#0E1316;       /* lifted black band */
+  --line:#232C31;
+  --card:#12181B;
+  --rock:#9DBFCC;       /* bus blue */
+  --rock-ink:#B9D5DF;
+  --on-rock:#0A1216;
+  --sage:#E8D6B3;       /* cream seats */
+  --sage-soft:#182024;
+  --ok:#8FD0A4;
+  --err:#F08A72;
+  --canyon:#0B1013;
+  --on-canyon:#F6F3EC;
+  --on-canyon-2:#A8B5BA;
+  --glow:#9DBFCC;
+  --sky-a:#000000;--sky-b:#040607;--sky-c:#0A1418;--sky-d:#142A32;
+  --sky-fg:#F6F3EC;--sky-muted:#A8B5BA;
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --wrap:1160px;
+  --red:#E0473B;        /* taillight red: used sparingly */
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:#000}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:800;font-variation-settings:"SOFT" 100,"WONK" 1;line-height:1.04;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.6rem,7vw,5.2rem)}
+h2{font-size:clamp(2rem,4.4vw,3.2rem)}
+h3{font-size:1.4rem;font-weight:700}
+p{margin:0;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--glow);outline-offset:3px;border-radius:4px}
+.eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rock-ink)}
+.on-dark .eyebrow{color:var(--glow)}
+.sky .eyebrow{color:var(--rock-ink)}
+.lede{font-size:1.15rem;color:var(--muted)}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:#000;color:var(--on-canyon);box-shadow:inset 0 -4px 0 #9DBFCC,inset 0 -6px 0 #E0473B}
+.bar{display:flex;align-items:center;gap:20px;min-height:68px;flex-wrap:wrap;padding-block:10px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.brand svg{width:38px;height:24px;flex:none}
+.brand b{font-family:var(--display);font-weight:800;font-variation-settings:"SOFT" 100,"WONK" 1;font-size:1.6rem;letter-spacing:-.01em}
+.brand b span{color:var(--glow)}
+.brand small{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;opacity:.7;text-transform:uppercase}
+nav{display:flex;order:1;gap:2px;flex-wrap:wrap;justify-content:flex-end;min-width:0}
+.menu-btn{order:2}
+nav a{white-space:nowrap}
+nav a{text-decoration:none;font-weight:600;font-size:.92rem;padding:8px 10px;border-radius:6px;opacity:.85}
+nav a:hover{opacity:1;background:rgba(255,255,255,.08)}
+nav>a[aria-current="page"],.dd-btn.current{opacity:1;box-shadow:inset 0 -2px 0 var(--glow);border-radius:0}
+.dd{position:relative}
+.dd-btn{display:inline-flex;align-items:center;gap:7px;background:none;border:0;color:inherit;font:600 .92rem var(--body);padding:8px 10px;border-radius:6px;opacity:.85;cursor:pointer}
+.dd-btn:hover,.dd-btn[aria-expanded="true"]{opacity:1;background:rgba(255,255,255,.08)}
+.dd-btn svg{width:11px;height:8px;transition:transform .2s}
+.dd-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.dd-menu{position:absolute;top:calc(100% + 8px);left:0;z-index:30;min-width:200px;display:grid;gap:2px;padding:8px;background:#0B1013;border:1px solid var(--line);border-radius:12px;box-shadow:0 18px 40px rgba(0,0,0,.55)}
+.dd-menu[hidden]{display:none}
+.dd-menu a{padding:10px 12px;border-radius:8px;opacity:.9}
+.dd-menu a:hover{background:rgba(157,191,204,.12);opacity:1}
+.dd-menu a[aria-current="page"]{color:var(--rock);box-shadow:none;background:rgba(157,191,204,.1)}
+.menu-btn{display:inline-block;background:none;border:0;padding:0;cursor:pointer;line-height:0;border-radius:10px;transition:transform .15s}
+header{overflow-x:clip}
+.menu-btn{position:relative;width:120px;height:52px}
+.menu-btn svg{width:120px;height:52px;display:block;position:relative;z-index:1;
+  transition:transform .9s cubic-bezier(.22,1,.36,1)}           /* drive back in: decelerate */
+.menu-btn.gone svg{transform:translateX(100vw);
+  transition:transform .65s cubic-bezier(.55,0,.85,.25)}
+.menu-btn.from-left svg{transform:translateX(-100vw);transition:none}  /* reverse light first, then drive */        /* drive off: accelerate */
+.menu-btn:not(.gone):hover svg{transform:translateX(-3px)}
+.menu-btn .hub{transform-box:fill-box;transform-origin:center}
+.menu-btn.driving .hub{animation:spin .3s linear infinite}
+.menu-btn.driving svg .body{animation:bump .18s ease-in-out infinite alternate}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bump{to{transform:translateY(-1px)}}
+.menu-close{position:absolute;inset:0;display:grid;place-items:center;font:800 .8rem var(--body);letter-spacing:.14em;color:var(--glow);
+  border:2px dashed rgba(241,221,179,.55);border-radius:12px;opacity:0;transition:opacity .2s}
+.menu-btn[aria-expanded="true"] .menu-close{opacity:1;transition:opacity .3s .9s}
+.menu-close{left:24px}
+.qmenu{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;align-items:center;padding-block:4px 14px;animation:qdrop .3s ease .55s both}
+.qmenu[hidden]{display:none}
+@keyframes qdrop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.qmenu-label{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--on-canyon-2);margin-right:4px}
+.qmenu a{text-decoration:none;font-weight:700;font-size:.92rem;padding:9px 16px;border-radius:999px;background:var(--rock);color:var(--on-rock)}
+.qmenu a:last-child{background:transparent;color:var(--on-canyon);box-shadow:inset 0 0 0 2px var(--rock)}
+.qmenu a:hover{filter:brightness(1.08)}
+@media (max-width:520px){.qmenu{justify-content:flex-start}.qmenu-label{width:100%}}
+/* idling engine, exhaust, brake + reverse lights */
+.menu-btn .chassis{animation:idle .11s linear infinite alternate}
+@keyframes idle{to{transform:translateY(.45px)}}
+.menu-btn .puff{opacity:0;transform-box:fill-box;transform-origin:center;animation:puff 1.8s ease-out infinite}
+.menu-btn .puff:nth-child(2){animation-delay:-.6s}
+.menu-btn .puff:nth-child(3){animation-delay:-1.2s}
+@keyframes puff{0%{opacity:0;transform:translate(0,0) scale(.5)}15%{opacity:.6}100%{opacity:0;transform:translate(-20px,-11px) scale(2.6)}}
+.menu-btn .brake,.menu-btn .rev{transition:fill .12s}
+.menu-btn .brake-glow,.menu-btn .rev-glow{opacity:0;transition:opacity .12s}
+.menu-btn:hover .brake{fill:#FF3B2F}
+.menu-btn:hover .brake-glow{opacity:.45}
+.menu-btn.reversing .rev{fill:#FFFFFF}
+.menu-btn.reversing .rev-glow{opacity:.55}
+.menu-btn.reversing .brake{fill:#7A2A22}
+.menu-btn.reversing .brake-glow{opacity:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 1rem var(--body);text-decoration:none;padding:14px 22px;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s,filter .15s}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+.btn-glow{background:var(--glow);color:#0A1216}
+.sky .btn-glow{background:var(--rock);color:var(--on-rock)}
+.btn-rock{background:var(--rock);color:var(--on-rock)}
+.btn-ghost{border-color:currentColor;background:transparent;color:inherit}
+.btn-small{padding:8px 14px;font-size:.88rem}
+.bar .btn{padding:10px 16px;font-size:.92rem}
+@media (max-width:980px){
+  .bar{row-gap:6px}
+  nav{order:3;width:100%;justify-content:flex-start;padding-bottom:6px;margin-inline:-6px;row-gap:0}
+  nav a{padding:7px 8px;font-size:.9rem}
+}
+@media (max-width:520px){
+  .brand small{display:none}
+  .brand b{font-size:1.3rem}
+  .brand svg{width:32px;height:20px}
+  .menu-btn,.menu-btn svg{width:100px;height:43px}
+}
+
+/* dusk sky + two-tone paint split */
+.sky{position:relative;overflow:hidden;color:var(--sky-fg);
+  background:linear-gradient(180deg,var(--sky-a) 0%,var(--sky-b) 40%,var(--sky-c) 78%,var(--sky-d) 100%)}
+.sky .lede{color:var(--sky-muted)}
+.scape{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(56px,8vw,104px);pointer-events:none;display:block}
+.sky>.wrap{position:relative;z-index:1}
+
+/* hero */
+.hero>.wrap{display:grid;grid-template-columns:1.2fr .9fr;gap:48px;align-items:center;padding-block:clamp(44px,6vw,76px) clamp(48px,7vw,84px)}
+.hero h1 em{font-style:italic}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.phone-line{font-family:var(--mono);font-size:.9rem;color:var(--sky-muted)}
+.phone-line strong{color:var(--sky-fg);font-weight:500}
+.hero h1 em{color:var(--rock-ink)}
+.stack{display:grid;gap:18px}
+
+/* dec-page card */
+.dec{background:#FFFDF7;color:#1E3540;border-radius:10px;padding:22px 22px 18px;box-shadow:0 18px 44px rgba(30,53,64,.3);transform:rotate(1.5deg);font-family:var(--mono);font-size:.84rem;min-width:0}
+.dec-head{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid #1E3540;padding-bottom:10px;margin-bottom:10px;flex-wrap:wrap}
+.dec-head b{font-family:var(--display);font-weight:800;font-size:1.1rem}
+.dec table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.dec td{padding:7px 0;border-bottom:1px dashed #C9D3D6;vertical-align:top}
+.dec td:last-child{text-align:right;font-weight:500}
+.dec .stamp{display:inline-block;margin-top:14px;border:2px solid #4C7A3F;color:#4C7A3F;padding:4px 10px;border-radius:4px;transform:rotate(-3deg);font-weight:500;letter-spacing:.1em}
+.visual{position:relative;min-width:0;padding-bottom:70px}
+.photo-unused{display:block;width:100%;max-width:100%;aspect-ratio:1200/929;object-fit:cover;border-radius:18px;border:6px solid #F8F6F0;box-shadow:0 20px 50px rgba(30,53,64,.28)}
+.visual .dec{position:absolute;right:-12px;bottom:0;width:min(330px,86%);font-size:.78rem;padding:16px 18px 14px}
+.visual .dec td{padding:5px 0}
+@media (max-width:880px){.hero>.wrap{grid-template-columns:1fr}.dec{transform:none}.visual .dec{right:8px}}
+
+/* inner page hero */
+.phero>.wrap{padding-block:clamp(44px,6vw,70px) clamp(44px,6vw,72px);display:grid;gap:16px}
+
+/* bands */
+.band{padding-block:clamp(56px,8vw,96px)}
+.band.sand{background:var(--sand)}
+.band.dark{background:var(--canyon);color:var(--on-canyon)}
+.band.dark .lede{color:var(--on-canyon-2)}
+
+/* lines grid */
+.lines{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.reach{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px}
+.place{border-top:3px solid var(--rock);padding-top:16px;display:grid;gap:8px;align-content:start}
+.place .tag{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+.place p{color:var(--muted)}
+@media (max-width:760px){.reach{grid-template-columns:1fr}}
+.line{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:12px;text-decoration:none;transition:border-color .15s,transform .15s}
+.line:hover{border-color:var(--red);transform:translateY(-2px)}
+.line .tag{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+.line p{color:var(--muted);font-size:.95rem}
+.line .go{margin-top:auto;font-weight:700;color:var(--rock-ink)}
+@media (max-width:980px){.lines{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.lines{grid-template-columns:1fr}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:36px;counter-reset:s}
+.step{border-top:3px solid var(--red);padding-top:16px;display:grid;gap:8px;position:relative}
+.step::before{counter-increment:s;content:"Step " counter(s);font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+.step p{color:var(--on-canyon-2)}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* carriers */
+.carriers{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.carriers span{font-family:var(--display);font-weight:700;font-size:1rem;padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;display:flex;flex-direction:column;gap:14px;margin:0}
+.stars{color:var(--red);letter-spacing:2px;font-size:1.05rem}
+.review blockquote{margin:0;font-size:1.02rem}
+.review figcaption{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-weight:700}
+.sample{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rock-ink);border:1px dashed var(--rock);padding:2px 8px;border-radius:4px;font-weight:500}
+@media (max-width:900px){.reviews{grid-template-columns:1fr}}
+
+/* split + coverage */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.split>*{min-width:0}
+@media (max-width:860px){.split{grid-template-columns:1fr;gap:32px}}
+.cov{display:grid;border-top:1px solid var(--line);margin:0}
+.cov div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.cov dt{font-weight:700}
+.cov dd{margin:0;color:var(--muted)}
+@media (max-width:560px){.cov div{grid-template-columns:1fr;gap:4px}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:.86rem;font-weight:600;padding:6px 12px;border-radius:6px;background:var(--sage-soft);border:1px solid var(--line)}
+.note{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--rock);border-radius:10px;padding:24px;display:grid;gap:12px;align-content:start}
+.note p{color:var(--ink);font-size:1.05rem}
+.cta-band{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.person{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center}
+.avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--rock);color:var(--on-rock);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;box-shadow:0 0 0 5px var(--card),0 0 0 9px #E9ECEE}
+.person .role{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+@media (max-width:760px){.team{grid-template-columns:1fr}}
+.social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){.social{grid-template-columns:1fr}}
+.soc{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);text-decoration:none;transition:border-color .15s,transform .15s}
+.soc:hover{border-color:var(--rock);transform:translateY(-2px)}
+.soc svg{width:30px;height:30px;flex:none;fill:none;stroke:var(--rock);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.soc span{display:grid;min-width:0}
+.soc small{color:var(--muted);font-size:.85rem;overflow-wrap:anywhere}
+.soc i{margin-left:auto;font-style:normal;color:var(--rock);font-weight:700}
+.ph{background:rgba(241,221,179,.45);padding:0 4px;border-radius:3px}
+
+/* ===== quote form ===== */
+.qwrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+@media (max-width:960px){.qwrap{grid-template-columns:1fr}}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.tab{font:700 1rem var(--body);padding:12px 20px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tab[aria-selected="true"]{border-color:var(--rock);background:var(--rock);color:var(--on-rock)}
+form{display:grid;gap:24px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:clamp(18px,3vw,28px);display:grid;gap:18px}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.sec-head h3{font-size:1.3rem}
+.sec-head p{color:var(--muted);font-size:.9rem}
+.rep{display:grid;gap:16px}
+.item{border:1px dashed var(--line);border-radius:10px;padding:16px;display:grid;gap:14px}
+.item-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.item-head b{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage)}
+.rm{background:none;border:none;color:var(--err);font:600 .85rem var(--body);cursor:pointer;padding:4px}
+.add{justify-self:start;background:var(--sage-soft);color:var(--ink);border:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fgrid .full{grid-column:1/-1}
+@media (max-width:600px){.fgrid{grid-template-columns:1fr}}
+label.f{display:grid;gap:6px;font-weight:600;font-size:.9rem;min-width:0}
+label.f small{font-weight:400;color:var(--muted)}
+label.f.bad input,label.f.bad select,label.f.bad textarea{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
+.req-note{color:var(--muted);font-size:.9rem;margin:0 0 14px}
+input,select,textarea{font:inherit;font-weight:400;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);width:100%}
+textarea{resize:vertical;min-height:84px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-color:var(--rock)}
+.drop{border:2px dashed var(--rock);border-radius:12px;padding:22px;display:grid;gap:10px;text-align:center;background:var(--paper);cursor:pointer}
+.drop.over{background:var(--sand)}
+.drop input{position:absolute;width:1px;height:1px;opacity:0}
+.drop b{font-size:1.05rem}
+.drop span{color:var(--muted);font-size:.9rem}
+.files{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.files li{display:flex;justify-content:space-between;gap:10px;align-items:center;font-family:var(--mono);font-size:.82rem;background:var(--sage-soft);border-radius:6px;padding:8px 10px;min-width:0}
+.files li span{overflow-wrap:anywhere}
+.err{color:var(--err);font-size:.9rem;font-weight:600}
+.done{display:grid;gap:16px}
+.done pre{font-family:var(--mono);font-size:.8rem;white-space:pre-wrap;background:var(--sand);border:1px solid var(--line);border-radius:8px;padding:16px;margin:0;max-height:460px;overflow:auto}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.copyable{font-family:var(--mono);user-select:all}
+.side{display:grid;gap:14px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 88px)}
+@media (max-width:960px){.side{position:static}}
+.fact{border-left:3px solid var(--sage);padding-left:14px}
+.fact b{display:block}
+.fact span{color:var(--muted);font-size:.93rem}
+
+/* footer */
+.foot{background:var(--canyon);color:var(--on-canyon-2);font-size:.92rem;position:relative;overflow:hidden}
+.foot .wrap{padding-block:48px}
+.foot .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+.foot h4{font-family:var(--display);font-size:1.15rem;color:var(--on-canyon);margin:0 0 10px}
+.foot a{text-decoration:none;display:block;padding:3px 0}
+.foot a:hover{color:var(--glow)}
+.foot .legal{margin-top:32px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:.8rem;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.foot .ph{color:var(--glow)}
+@media (max-width:760px){.foot .cols{grid-template-columns:1fr}}
+
+[data-view]{animation:fade .35s ease}
+@keyframes fade{from{opacity:.4}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<!-- shared two-tone paint split -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="canyon" viewBox="0 0 1440 120" preserveAspectRatio="xMidYMax slice">
+      <path fill="#F6F3EC" d="M0 28 H1440 V70 H790 L720 108 L650 70 H0Z"/>
+      <path fill="#C7CED3" d="M0 24 H1440 V28 H0Z"/>
+      <path fill="#9DBFCC" d="M0 70 H650 L720 108 L790 70 H1440 V120 H0Z"/>
+      <path d="M0 76 H654 L720 113 L786 76 H1440" fill="none" stroke="#E0473B" stroke-width="2.5"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#home">
+      <svg viewBox="0 0 38 24" aria-hidden="true"><path fill="#F6F3EC" d="M5 2 H31 Q36 2 36 8 V11 H2 V7 Q2 2 5 2Z"/><path fill="#9DBFCC" d="M2 11 H36 V17 Q36 19 34 19 H4 Q2 19 2 17Z"/><rect x="6" y="4.5" width="7" height="5" rx="1" fill="#23434F"/><rect x="15" y="4.5" width="7" height="5" rx="1" fill="#23434F"/><rect x="24" y="4.5" width="7" height="5" rx="1" fill="#23434F"/><circle cx="9" cy="19.5" r="3.5" fill="#1E3540" stroke="#F6F3EC" stroke-width="1.5"/><circle cx="29" cy="19.5" r="3.5" fill="#1E3540" stroke="#F6F3EC" stroke-width="1.5"/></svg>
+      <b>Tate <span>The</span> Broker</b>
+    </a>
+    <nav id="nav" aria-label="Main">
+      <a href="#home-insurance">Home</a>
+      <a href="#auto">Auto</a>
+      <a href="#business">Business</a>
+      <a href="#life">Life</a>
+      <a href="#umbrella">Umbrella</a>
+      <a href="#review">Policy Review</a>
+      <a href="#about">About</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="quoteMenu" aria-label="Get a quote">
+      <svg viewBox="-24 0 120 52" aria-hidden="true">
+        <defs><linearGradient id="twoTone" x1="0" y1="0" x2="0" y2="1"><stop offset=".47" stop-color="#F6F3EC"/><stop offset=".47" stop-color="#9DBFCC"/></linearGradient></defs>
+        <g class="smoke" fill="#C9D3D7"><circle class="puff" cx="-1" cy="38" r="2.4"/><circle class="puff" cx="-1" cy="38" r="2.4"/><circle class="puff" cx="-1" cy="38" r="2.4"/></g>
+        <g class="chassis">
+          <rect x="-2" y="36.4" width="7" height="2.4" rx="1" fill="#8E979C"/>
+          <path fill="url(#twoTone)" d="M8 3 H74 Q86 3 89 12 L92 30 Q93 38 87 39 H7 Q3 39 3 35 V8 Q3 3 8 3Z"/>
+          <path fill="none" stroke="#C7CED3" stroke-width="1" d="M3 21 H91"/>
+          <g fill="#23434F"><rect x="9" y="7" width="14" height="9" rx="2"/><rect x="26" y="7" width="14" height="9" rx="2"/><rect x="43" y="7" width="14" height="9" rx="2"/><rect x="60" y="7" width="14" height="9" rx="2"/><path d="M77 7 H82 Q86 7 87 12 L88 16 H77Z"/></g>
+          <rect x="87" y="28" width="4" height="3" rx="1" fill="#F1DDB3"/>
+          <ellipse class="brake-glow" cx="4" cy="27" rx="7" ry="7" fill="#FF3B2F"/>
+          <rect class="brake" x="2.2" y="23" width="3.2" height="8" rx="1" fill="#7A2A22"/>
+          <ellipse class="rev-glow" cx="4" cy="33.2" rx="6" ry="5" fill="#FFFFFF"/>
+          <rect class="rev" x="2.2" y="31.6" width="3.2" height="3.2" rx="1" fill="#5D6266"/>
+          <text x="45" y="33.5" text-anchor="middle" fill="#1E3540" font-family="Public Sans, system-ui, sans-serif" font-weight="800" font-size="11" letter-spacing="1.5">QUOTE</text>
+        </g>
+        <g fill="#1E3540" stroke="#F6F3EC" stroke-width="2.5"><circle cx="20" cy="40" r="7"/><circle cx="74" cy="40" r="7"/></g>
+        <g class="hub" fill="none" stroke="#C7CED3" stroke-width="1.4"><circle cx="20" cy="40" r="2.6"/><path d="M20 35.5 V44.5 M15.5 40 H24.5"/></g>
+        <g class="hub" fill="none" stroke="#C7CED3" stroke-width="1.4"><circle cx="74" cy="40" r="2.6"/><path d="M74 35.5 V44.5 M69.5 40 H78.5"/></g>
+      </svg>
+      <span class="menu-close" aria-hidden="true">CLOSE</span>
+    </button>
+  </div>
+  <div class="wrap qmenu" id="quoteMenu" hidden>
+    <span class="qmenu-label">What would you like quoted?</span>
+    <a href="#quote" data-line="auto">Auto</a>
+    <a href="#quote" data-line="home">Home</a>
+    <a href="#quote" data-line="bundle">Home + Auto Bundle</a>
+    <a href="#quote" data-line="commercial">Business</a>
+    <a href="#review">Drop a dec, get my rec</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<section data-view="home">
+  <div class="sky hero">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Independent insurance broker · Arizona</span>
+        <h1>Insurance that's <em>shopped, compared,</em> and explained.</h1>
+        <p class="lede">Home, auto, business, life and umbrella. I shop your coverage across a wide range of insurance companies, explain the trade-offs and handle the paperwork so you don't have to.</p>
+        <div class="hero-actions">
+          <a class="btn btn-glow" href="#quote">Start my free quote</a>
+          <a class="btn btn-ghost" href="#review">Drop a dec, get my rec</a>
+        </div>
+        <p class="phone-line">Call or text <a href="tel:+16023150924"><strong>602-315-0924</strong></a></p>
+      </div>
+        <aside class="dec" aria-label="Example quote summary">
+        <div class="dec-head"><b>Your Quote, Compared</b><span>Example</span></div>
+        <table>
+          <tr><td>Classic auto · Agreed value</td><td>$38,000</td></tr>
+          <tr><td>Liability limits</td><td>100/300/100</td></tr>
+          <tr><td>Comp / collision deductible</td><td>$500</td></tr>
+        </table>
+        <span class="stamp">READY TO BIND</span>
+      </aside>
+    </div>
+    
+  </div>
+
+  <div class="band">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">What I cover</span>
+        <h2>One broker for everything you own.</h2>
+        <p class="lede">Bundle where it saves you money, split carriers where it doesn't. You get one person to call either way.</p>
+      </div>
+      <div class="lines">
+        <a class="line" href="#home-insurance"><span class="tag">Property</span><h3>Home</h3><p>Homeowners, condo, renters, landlord and vacant-home policies.</p><span class="go">See home coverage →</span></a>
+        <a class="line" href="#auto"><span class="tag">Vehicles</span><h3>Auto</h3><p>Daily drivers, new drivers, classics, RVs, motorcycles and Mexico trips.</p><span class="go">See auto coverage →</span></a>
+        <a class="line" href="#business"><span class="tag">Commercial</span><h3>Business</h3><p>General liability, commercial auto, BOPs and coverage for contractors.</p><span class="go">See business coverage →</span></a>
+        <a class="line" href="#life"><span class="tag">Family</span><h3>Life</h3><p>Term and permanent coverage that takes care of the people who depend on you.</p><span class="go">See life coverage →</span></a>
+        <a class="line" href="#umbrella"><span class="tag">Liability</span><h3>Umbrella</h3><p>An extra layer of liability above your home and auto limits.</p><span class="go">See umbrella coverage →</span></a>
+        <a class="line" href="#home-insurance"><span class="tag">Rentals</span><h3>Short-Term Rentals</h3><p>Airbnb, VRBO and other short-term rentals, placed with carriers that write STRs specifically.</p><span class="go">See rental coverage →</span></a>
+        <a class="line" href="#quote"><span class="tag">Specialty</span><h3>Hard-to-Place</h3><p>Non-standard risks, prior cancellations, and the policies other brokers pass on. Bring them here first.</p><span class="go">Request a quote →</span></a>
+        <a class="line" href="#review"><span class="tag">Free review</span><h3>Policy Review</h3><p>Send your current dec page and get an honest look at your coverage first.</p><span class="go">Drop a dec →</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="band sand">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Where I work</span>
+        <h2>Rooted in Arizona. Licensed well beyond it.</h2>
+      </div>
+      <div class="reach">
+        <div class="place"><span class="tag">Home base</span><h3>Arizona</h3><p>Based in Arizona and rooted in the local market, where most clients are.</p></div>
+        <div class="place"><span class="tag">Reach</span><h3>United States</h3><p>Licensed to place coverage for clients across the country, wherever you've landed.</p></div>
+        <div class="place"><span class="tag">Cross-border</span><h3>México</h3><p>Coverage for clients and businesses with needs on both sides of the border.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark on-dark">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">How it works</span>
+        <h2>Quoted, compared, and covered.</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><h3>Tell me what you've got</h3><p>Fill out the quote form and attach your current declarations page if you have one.</p></div>
+        <div class="step"><h3>I shop the market</h3><p>I run your info across my carriers and send back real options, with deductibles and coverage limits laid out side by side.</p></div>
+        <div class="step"><h3>You pick, I bind</h3><p>Choose which option works for you and I'll take care of the rest.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div class="wrap split">
+      <div class="stack">
+        <span class="eyebrow">Free policy review</span>
+        <h2>Drop a dec, get my rec.</h2>
+        <p class="lede">Not ready for a full quote? Send me your current declarations page. I'll go over your coverage, flag any gaps, and tell you whether it looks worth shopping.</p>
+        <div><a class="btn btn-rock" href="#review">Send my dec page</a></div>
+      </div>
+      <dl class="cov">
+        <div><dt>What you send</dt><dd>Your current declarations page. A PDF or a photo works.</dd></div>
+        <div><dt>What I look at</dt><dd>Limits, deductibles, gaps in coverage, and anything that looks out of line for what you're paying.</dd></div>
+        <div><dt>What you get</dt><dd>A straight answer on how your policy looks. If there may be room to save, I'll tell you what a full quote would take.</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <div class="band sand">
+    <div class="wrap">
+      <div class="stack">
+        <span class="eyebrow">Client reviews</span>
+        <h2>What Arizona clients say.</h2>
+      </div>
+      <div class="reviews">
+        <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>Tate found us a better home policy with a higher dwelling limit and still beat our renewal. He walked us through both deductible options before we signed anything.</blockquote><figcaption>Jessica R. · Tempe <span class="sample">Sample review</span></figcaption></figure>
+        <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>Added my son to our auto policy and I was bracing for the worst. Tate shopped it around and got the increase way down.</blockquote><figcaption>Marcus T. · Mesa <span class="sample">Sample review</span></figcaption></figure>
+        <figure class="review"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><blockquote>I run a small landscaping company. Tate got my general liability and commercial auto sorted in one afternoon and sent the certificate to my client the same day.</blockquote><figcaption>Daniel G. · Phoenix <span class="sample">Sample review</span></figcaption></figure>
+      </div>
+    </div>
+  </div>
+
+  <div class="band dark">
+    <div class="wrap cta-band">
+      <div class="stack"><h2>Paying too much? Let's find out.</h2><p class="lede">Have your declarations page ready and it takes about ten minutes.</p></div>
+      <a class="btn btn-glow" href="#quote">Get my quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOME INSURANCE ============ -->
+<section data-view="home-insurance" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Home insurance</span>
+    <h1>Protect the place you call home.</h1>
+    <p class="lede">From your first house to your rental properties, I find coverage that fits what you own, with limits that match what it would actually cost to rebuild.</p>
+    <div><a class="btn btn-glow" href="#quote" data-line="home">Quote my home</a></div>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">Policies I write</span>
+      <h2>Every kind of property.</h2>
+      <div class="chips"><span>Homeowners</span><span>Condo (HO-6)</span><span>Renters</span><span>Landlord / rental dwelling</span><span>Vacant home</span><span>Short-term rental</span><span>Manufactured &amp; mobile homes</span><span>High-value homes</span></div>
+      <p class="lede">I have access to a wide range of carriers, including ones that specialize in rentals, vacant homes and high-risk properties.</p>
+    </div>
+    <div class="note">
+      <span class="eyebrow">Why I get it</span>
+      <p>I own rentals myself, and a few of them are in high-risk areas. I've been through the process of getting tough properties covered, so I know what it takes.</p>
+      <p>I'm not only your broker. I'm a policyholder too, and I shop my own coverage the same way I'll shop yours.</p>
+    </div>
+  </div></div>
+  <div class="band sand"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">What a policy includes</span>
+      <h2>Read your dec page like a pro.</h2>
+      <p class="lede">Every homeowners policy is built from the same parts. Here's what each one means.</p>
+      <div><a class="btn btn-rock" href="#review">Have me review yours</a></div>
+    </div>
+    <dl class="cov">
+      <div><dt>Coverage A · Dwelling</dt><dd>Rebuilds the structure of your home after a covered loss.</dd></div>
+      <div><dt>Coverage B · Other structures</dt><dd>Detached garages, casitas, block walls and fences.</dd></div>
+      <div><dt>Coverage C · Personal property</dt><dd>Furniture, electronics, clothes and everything else you own.</dd></div>
+      <div><dt>Coverage D · Loss of use</dt><dd>Living costs while your home is repaired.</dd></div>
+      <div><dt>Coverage E · Liability</dt><dd>Protects you if someone is hurt on your property.</dd></div>
+      <div><dt>Wind / hail deductible</dt><dd>Often separate from your main deductible. I'll show you the price difference for each option.</dd></div>
+      <div><dt>Short-term rentals</dt><dd>Airbnb and VRBO hosts need coverage written for guest stays. I place STRs with carriers that specialize in them.</dd></div>
+    </dl>
+  </div></div>
+</section>
+
+<!-- ============ AUTO ============ -->
+<section data-view="auto" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Auto insurance</span>
+    <h1>Coverage for everything you drive.</h1>
+    <p class="lede">Daily drivers, teen drivers, weekend classics. I match each vehicle to the right carrier instead of forcing everything onto one policy.</p>
+    <div><a class="btn btn-glow" href="#quote" data-line="auto">Quote my auto</a></div>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">Coverage basics</span>
+      <h2>What actually protects you.</h2>
+      <p class="lede">Arizona's legal minimum is a starting point, not a recommendation. I'll show you what higher limits cost so you can decide.</p>
+    </div>
+    <dl class="cov">
+      <div><dt>Bodily injury &amp; property damage</dt><dd>Pays for others' injuries and damage when you're at fault.</dd></div>
+      <div><dt>Uninsured / underinsured motorist</dt><dd>Covers you when the other driver has little or no insurance.</dd></div>
+      <div><dt>Comprehensive</dt><dd>Hail, theft, cracked windshields, and other damage outside a collision.</dd></div>
+      <div><dt>Collision</dt><dd>Repairs your vehicle after an accident, whoever caused it.</dd></div>
+      <div><dt>Rental &amp; roadside</dt><dd>A rental while yours is in the shop, plus towing and jump-starts.</dd></div>
+    </dl>
+  </div></div>
+  <div class="band sand"><div class="wrap stack">
+    <span class="eyebrow">Vehicles I insure</span>
+    <h2>From commuters to collector cars.</h2>
+    <div class="chips"><span>Personal auto</span><span>Teen &amp; new drivers</span><span>Hard-to-place, high-risk &amp; SR-22</span><span>Classic &amp; collector</span><span>Motorcycles</span><span>RVs &amp; motorhomes</span><span>Boats</span><span>Mexico travel coverage</span></div>
+    <p class="lede">I have access to a wide range of carriers, from standard markets to specialty and collector-car coverage, so there's usually a good fit.</p>
+  </div></div>
+</section>
+
+<!-- ============ BUSINESS ============ -->
+<section data-view="business" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Business insurance</span>
+    <h1>Coverage that keeps the job moving.</h1>
+    <p class="lede">Commercial auto, liability, property and workers' comp for Arizona small businesses, all handled by one broker.</p>
+    <div><a class="btn btn-glow" href="#quote" data-line="commercial">Quote my business</a></div>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">Commercial lines</span>
+      <h2>Built for Arizona small business.</h2>
+      <p class="lede">Contractors, landscapers, haulers, retail shops and service businesses.</p>
+    </div>
+    <dl class="cov">
+      <div><dt>Commercial auto</dt><dd>Trucks, vans and cutaways your business owns or drives.</dd></div>
+      <div><dt>General liability</dt><dd>Covers third-party injury and property damage from your work.</dd></div>
+      <div><dt>Business owner's policy (BOP)</dt><dd>Liability and business property bundled together.</dd></div>
+      <div><dt>Workers' compensation</dt><dd>Required in Arizona once you have employees.</dd></div>
+      <div><dt>Commercial property</dt><dd>Your building, equipment, tools and inventory.</dd></div>
+    </dl>
+  </div></div>
+  <div class="band sand"><div class="wrap cta-band">
+    <div class="stack"><h2>Ready to cover your business?</h2><p class="lede">Tell me about your operation and I'll shop it for you.</p></div>
+    <a class="btn btn-rock" href="#quote" data-line="commercial">Quote my business</a>
+  </div></div>
+</section>
+
+<!-- ============ LIFE ============ -->
+<section data-view="life" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Life insurance</span>
+    <h1>Take care of the people who count on you.</h1>
+    <p class="lede">Replace your income, pay off the mortgage, or cover your kids' future. I'll help you figure out how much coverage makes sense and compare prices.</p>
+    <div><a class="btn btn-glow" href="#quote">Request a quote</a></div>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">Options</span>
+      <h2>Term or permanent.</h2>
+      <p class="lede">Most families start with term. Permanent coverage can make sense for estate planning or lifelong needs.</p>
+    </div>
+    <dl class="cov">
+      <div><dt>Term life</dt><dd>Coverage for a set number of years, often 10, 20 or 30. The most coverage for the lowest price.</dd></div>
+      <div><dt>Whole life</dt><dd>Lifelong coverage that builds cash value over time.</dd></div>
+      <div><dt>Mortgage protection</dt><dd>Sized to pay off your home if something happens to you.</dd></div>
+      <div><dt>Final expense</dt><dd>A smaller policy that covers funeral and end-of-life costs.</dd></div>
+    </dl>
+  </div></div>
+  <div class="band sand"><div class="wrap cta-band">
+    <div class="stack"><h2>Not sure how much you need?</h2><p class="lede">Call or text 602-315-0924 and we'll work through it together.</p></div>
+    <a class="btn btn-rock" href="#quote">Request a quote</a>
+  </div></div>
+</section>
+
+<!-- ============ UMBRELLA ============ -->
+<section data-view="umbrella" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Umbrella insurance</span>
+    <h1>An extra layer when a claim goes past your limits.</h1>
+    <p class="lede">If a lawsuit goes beyond your auto or home liability limits, an umbrella policy picks up the rest. It's usually one of the cheapest ways to protect what you've built.</p>
+    <div><a class="btn btn-glow" href="#quote">Request a quote</a></div>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">How it works</span>
+      <h2>It sits on top of your other policies.</h2>
+      <p class="lede">Your home and auto liability pay first. The umbrella kicks in after those limits run out.</p>
+      <div class="chips"><span>$1,000,000+ limits</span><span>Protects you against others</span><span>Add anytime</span></div>
+    </div>
+    <dl class="cov">
+      <div><dt>Who it's for</dt><dd>Homeowners, landlords, families with teen drivers, and anyone with savings or assets to protect.</dd></div>
+      <div><dt>What it covers</dt><dd>Injury and property damage claims above your other limits, plus some claims those policies exclude, like libel or slander.</dd></div>
+      <div><dt>What it needs</dt><dd>Carriers usually require certain liability limits on your home and auto first. I'll line those up for you.</dd></div>
+      <div><dt>When to add it</dt><dd>Anytime. You can add an umbrella in the middle of a policy term.</dd></div>
+    </dl>
+  </div></div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section data-view="about" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">About</span>
+    <h1>Meet the team.</h1>
+    <p class="lede">Tate The Broker is an independent insurance broker serving clients across the U.S. and even in Mexico.</p>
+  </div></div>
+  <div class="band"><div class="wrap split">
+    <div class="stack">
+      <span class="eyebrow">Why a broker</span>
+      <h2>I work for you, not one carrier.</h2>
+      <p class="lede">Captive agents sell one company's products. As an independent broker, I have access to a wide range of carriers, from the names you know to specialty markets. If one raises your rate at renewal, I can shop it again without you starting over.</p>
+      <p class="lede">Licensed across the U.S., with cross-border coverage in México.</p>
+    </div>
+    <div class="stack">
+      <span class="eyebrow">The team</span>
+      <div class="team">
+        <div class="person"><img class="avatar" src="tate-matheny.jpg" alt="Tate Matheny" width="72" height="72" loading="lazy"><div><h3>Tate Matheny</h3><div class="role">Broker · Owner</div></div></div>
+        <div class="person"><div class="avatar" aria-hidden="true">M</div><div><h3>Mustofa</h3><div class="role">Senior Account Manager</div></div></div>
+      </div>
+      <span class="eyebrow">Follow along</span>
+      <div class="social">
+        <a class="soc" href="https://www.instagram.com/tatethebroker/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+          <span><b>Instagram</b><small>@tatethebroker</small></span><i aria-hidden="true">↗</i></a>
+        <a class="soc" href="https://www.linkedin.com/in/tate-matheny-a98598152/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5V16M8 7.8v.1M11.5 16v-3.2c0-1.4.9-2.3 2.1-2.3s2 .9 2 2.3V16M11.5 10.5V16"/></svg>
+          <span><b>LinkedIn</b><small>Tate Matheny</small></span><i aria-hidden="true">↗</i></a>
+      </div>
+    </div>
+  </div></div>
+  <div class="band dark"><div class="wrap cta-band">
+    <div class="stack"><h2>Let's look at your coverage.</h2><p class="lede">Call or text 602-315-0924, or send a quote request.</p></div>
+    <a class="btn btn-glow" href="#quote">Get a quote</a>
+  </div></div>
+</section>
+
+<!-- ============ POLICY REVIEW ============ -->
+<section data-view="review" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Free policy review</span>
+    <h1>Drop a dec, get my rec.</h1>
+    <p class="lede">Upload your declarations page(s) and I'll review them.</p>
+  </div></div>
+  <div class="band"><div class="wrap qwrap">
+    <div style="min-width:0">
+      <form id="reviewForm" novalidate>
+        <p class="req-note">All fields are required, including your declarations page.</p>
+        <div class="sec">
+          <div class="sec-head"><h3>Your declarations page</h3><p>Required for a review</p></div>
+          <label class="drop" id="rDrop" for="rFile">
+            <input type="file" id="rFile" accept=".pdf,.png,.jpg,.jpeg,.heic,.webp" multiple>
+            <b>Attach your declarations page</b>
+            <span>PDF or photo. Tap to choose, or drag files here.</span>
+          </label>
+          <ul class="files" id="rFileList"></ul>
+        </div>
+        <div class="sec">
+          <div class="sec-head"><h3>About you</h3></div>
+          <div class="fgrid">
+            <label class="f full" for="r-name">Full Name<input id="r-name" data-k="Full Name" autocomplete="name"></label>
+            <label class="f" for="r-phone">Phone Number<input id="r-phone" data-k="Phone Number" type="tel" autocomplete="tel"></label>
+            <label class="f" for="r-email">Email Address<input id="r-email" data-k="Email Address" type="email" autocomplete="email"></label>
+            <label class="f" for="r-type">Policy type
+              <select id="r-type" data-k="Policy Type"><option value="">Choose…</option><option>Home</option><option>Auto</option><option>Home &amp; Auto</option><option>Rental property</option><option>Commercial</option><option>Other</option></select></label>
+            <label class="f" for="r-contact">Best way to reach you
+              <select id="r-contact" data-k="Best Way to Reach"><option>Text</option><option>Call</option><option>Email</option></select></label>
+            <label class="f full" for="r-notes">Anything you want me to look at?<textarea id="r-notes" data-k="Notes" rows="3" placeholder="e.g. My renewal went up 20%. Am I covered for hail? Put N/A if nothing specific."></textarea></label>
+          </div>
+        </div>
+        <p class="err" id="rErr" hidden></p>
+        <div class="row"><button class="btn btn-rock" type="submit">Get my rec</button><span style="color:var(--muted);font-size:.88rem">A review is an opinion on your current policy. Actual savings depend on a full quote.</span></div>
+      </form>
+      <div class="sec done" id="rDone" hidden>
+        <span class="eyebrow">Last step</span>
+        <h3>Email this with your dec page attached.</h3>
+        <p>Copy your request and send it to <a class="copyable" href="mailto:tate@khaiserinsurance.com">tate@khaiserinsurance.com</a> with <strong id="rAttachNames"></strong> attached.</p>
+        <pre id="rSummary"></pre>
+        <div class="row">
+          <button class="btn btn-rock" type="button" id="rCopy" data-fallback>Copy request</button>
+          <button class="btn btn-ghost" type="button" id="rEdit">Edit details</button>
+          <span id="rCopyMsg" style="font-weight:600;color:var(--ok)" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="fact"><b>Where to find it</b><span>Your declarations page is usually the first page of your policy, or in your carrier's app under documents.</span></div>
+      <div class="fact"><b>Ready for a full quote?</b><span><a href="#quote">Go to the quote form</a> instead.</span></div>
+      <div class="fact"><b>Prefer to talk?</b><span>Call or text <span class="copyable">602-315-0924</span>.</span></div>
+    </aside>
+  </div></div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section data-view="quote" hidden>
+  <div class="sky phero"><div class="wrap">
+    <span class="eyebrow">Free quote</span>
+    <h1>Request your quote.</h1>
+    <p class="lede">Pick a policy type, fill in the details for everyone going on the policy, and attach your current declarations page if you have one.</p>
+  </div></div>
+  <div class="band"><div class="wrap qwrap">
+    <div style="min-width:0">
+      <div class="tabs" role="tablist" aria-label="Policy type">
+        <button class="tab" role="tab" id="tab-auto" data-line="auto" aria-selected="true">Auto</button>
+        <button class="tab" role="tab" id="tab-home" data-line="home" aria-selected="false">Home</button>
+        <button class="tab" role="tab" id="tab-bundle" data-line="bundle" aria-selected="false">Home + Auto Bundle</button>
+        <button class="tab" role="tab" id="tab-commercial" data-line="commercial" aria-selected="false">Commercial Auto</button>
+      </div>
+      <form id="quoteForm" novalidate>
+        <p class="req-note">All fields are required except the declarations page. Put N/A for anything that doesn't apply.</p>
+        <div id="formBody"></div>
+        <div class="sec">
+          <div class="sec-head"><h3>Declarations page</h3><p>Optional, but it speeds things up</p></div>
+          <label class="drop" id="drop" for="decFile">
+            <input type="file" id="decFile" accept=".pdf,.png,.jpg,.jpeg,.heic,.webp" multiple>
+            <b>Attach your current declarations page</b>
+            <span>PDF or photo. Tap to choose, or drag files here.</span>
+          </label>
+          <ul class="files" id="fileList"></ul>
+        </div>
+        <p class="err" id="formErr" hidden></p>
+        <div class="row"><button class="btn btn-rock" type="submit">Send my request</button><span style="color:var(--muted);font-size:.88rem">Your request goes straight to Tate. No email app needed.</span></div>
+      </form>
+      <div class="sec done" id="done" hidden>
+        <span class="eyebrow">Last step</span>
+        <h3>Send this to Tate to start your quote.</h3>
+        <p>We couldn't send your request from the site, so we opened it in your email app. Just hit send. <a href="#" id="mailAgain">Didn't open?</a> Copy it below and email it to <a class="copyable" href="mailto:tate@khaiserinsurance.com">tate@khaiserinsurance.com</a>.</p>
+        <p id="attachNote" data-fallback hidden><strong>Attach your declarations page to that email:</strong> <span id="attachNames"></span></p>
+        <pre id="summary"></pre>
+        <div class="row">
+          <button class="btn btn-rock" type="button" id="copyBtn" data-fallback>Copy request</button>
+          <button class="btn btn-ghost" type="button" id="editBtn">Edit details</button>
+          <span id="copyMsg" style="font-weight:600;color:var(--ok)" aria-live="polite"></span>
+        </div>
+      </div>
+    </div>
+    <aside class="side">
+      <div class="fact"><b>Bundle and save</b><span>Putting home and auto with one carrier often lowers the price of both. <a href="#quote" data-line="bundle">Quote a bundle</a></span></div>
+      <div class="fact"><b>Fill in everyone</b><span>Use "Add another" for each driver or person going on the policy.</span></div>
+      <div class="fact"><b>Pay through your lender?</b><span>Upload your dec page below so I can see your mortgagee clause.</span></div>
+      <div class="fact"><b>Prefer to talk?</b><span>Call or text <span class="copyable">602-315-0924</span>.</span></div>
+      <div class="fact"><b>Email</b><a class="copyable" href="mailto:tate@khaiserinsurance.com">tate@khaiserinsurance.com</a></div>
+    </aside>
+  </div></div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Tate The Broker</h4>
+        <p>Independent insurance for homes, vehicles, rentals and businesses across Arizona, the U.S. and México.</p>
+      </div>
+      <div>
+        <h4>Coverage</h4>
+        <a href="#home-insurance">Homeowners</a><a href="#auto">Auto</a><a href="#business">Business</a><a href="#life">Life</a><a href="#umbrella">Umbrella</a><a href="#review">Policy review</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p><a href="tel:+16023150924">602-315-0924</a><a href="mailto:tate@khaiserinsurance.com">tate@khaiserinsurance.com</a></p>
+        <a href="https://www.instagram.com/tatethebroker/" target="_blank" rel="noopener">Instagram @tatethebroker</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>Tate Matheny is a licensed agent with Khaiser Insurance Group. License #22123705. Based in Arizona.</span>
+      <span>Coverage availability and licensing vary by state and carrier.</span>
+    </div>
+  </div>
+</footer>
+
+
+
+<script>
+(function(){
+  /* ---------- routing ---------- */
+  var views=[].slice.call(document.querySelectorAll('[data-view]'));
+  var links=[].slice.call(document.querySelectorAll('#nav a'));
+
+  var nav=document.getElementById('nav'),mb=document.getElementById('menuBtn');
+  function show(){
+    var id=(location.hash||'#home').slice(1);
+    if(!views.some(function(v){return v.dataset.view===id})) id='home';
+    views.forEach(function(v){v.hidden=v.dataset.view!==id});
+    links.forEach(function(a){a.getAttribute('href')==='#'+id?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[href^="#"]');if(!a)return;
+    if(a.dataset.line) setLine(a.dataset.line);
+    if(a.getAttribute('href')===location.hash){e.preventDefault();show()}
+  });
+  var busy=false,qm=document.getElementById('quoteMenu');
+  /* quote bus: P -> R (reverse light) -> D, drive off and show the quote options; CLOSE brings it back */
+  function busOpen(){
+    var calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    mb.setAttribute('aria-expanded','true');qm.hidden=false;
+    if(calm){mb.classList.add('gone');return}
+    busy=true;mb.classList.add('reversing');
+    setTimeout(function(){mb.classList.remove('reversing')},420);
+    setTimeout(function(){mb.classList.add('driving','gone')},550);
+    setTimeout(function(){mb.classList.remove('driving');busy=false},1200);
+  }
+  function busClose(){
+    if(mb.getAttribute('aria-expanded')!=='true')return;
+    mb.setAttribute('aria-expanded','false');qm.hidden=true;
+    mb.classList.add('from-left');mb.classList.remove('gone');void mb.offsetWidth;mb.classList.remove('from-left');
+    mb.classList.add('driving');busy=true;
+    setTimeout(function(){mb.classList.remove('driving');busy=false},900);
+  }
+  mb.addEventListener('click',function(){if(busy)return;mb.getAttribute('aria-expanded')==='true'?busClose():busOpen()});
+  qm.addEventListener('click',function(e){if(e.target.closest('a'))setTimeout(busClose,0)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')busClose()});
+
+  /* ---------- quote form schemas ---------- */
+  var MAR=['','Single','Married','Divorced','Widowed','Domestic partner'];
+  var EDU=['','High school / GED','Some college','Associate degree','Bachelor\'s degree','Master\'s degree','Doctorate','Other'];
+  var LINES={
+    auto:{title:'Auto quote',sections:[
+      {title:'Drivers',note:'Add everyone in your household who drives',repeat:'Driver',fields:[
+        {k:'Full Name',full:1},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
+        {k:'Email Address',t:'email'},{k:'Occupation'},{k:'Education Level',t:'select',o:EDU},
+        {k:'Driver\'s License Number'},{k:'License State',v:'AZ'}]},
+      {title:'Household',fields:[
+        {k:'Current Address',full:1,ph:'Street, unit #, city, state, ZIP'},
+        {k:'Rent or Own Home',t:'select',o:['','Own','Rent']},{k:'Best Phone Number',t:'tel'}]},
+      {title:'Vehicles',repeat:'Vehicle',fields:[
+        {k:'Vehicle VIN',full:1,ph:'17 characters'},
+        {k:'Owned, Financed, or Leased',t:'select',o:['','Owned outright','Financed','Leased']},
+        {k:'Lienholder / Bank Name',hint:'If you own it outright or don\'t know right now, put N/A'},{k:'Estimated Annual Mileage',t:'number'}]},
+      {title:'Current coverage',fields:[
+        {k:'Current Insurance Carrier',ph:'Put N/A if none'},{k:'Desired Effective Date',t:'date'},
+        {k:'Current Coverage Limits',t:'textarea',full:1,ph:'e.g. 100/300/100, $500 comp/collision deductibles, or N/A'},
+        {k:'SR-22 Filing Required?',t:'select',o:['','No','Yes']}]}
+    ]},
+    home:{title:'Home quote',sections:[
+      {title:'People on the policy',note:'Add everyone going on the policy',repeat:'Person',fields:[
+        {k:'Full Name',full:1},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
+        {k:'Occupation'},{k:'Email Address',t:'email'},{k:'Phone Number',t:'tel'}]},
+      {title:'Property',fields:[
+        {k:'Full Property Address',full:1,ph:'Street, unit #, city, state, ZIP'},
+        {k:'Full Mailing Address',full:1,ph:'Type "Same" if same as property address'},
+        {k:'Year Roof Replaced',t:'number',ph:'e.g. 2018'},{k:'Year A/C Replaced',t:'number',ph:'e.g. 2021'},
+        {k:'Other Major Updates',t:'textarea',full:1,ph:'Plumbing, electrical, remodels, pool, solar... or N/A'}]}
+    ]},
+    commercial:{title:'Commercial auto quote',sections:[
+      {title:'Business',fields:[
+        {k:'Desired Effective Date',t:'date'},{k:'Entity Name'},{k:'EIN #',ph:'XX-XXXXXXX'},{k:'ADOT # (if applicable)',ph:'Put N/A if none'},
+        {k:'Mailing Address',full:1},{k:'Garaging Address',full:1,ph:'Where the vehicles are parked overnight'},
+        {k:'Year Business Started',t:'number'},{k:'Years of Experience in the Industry',t:'number'},
+        {k:'Estimated Gross Sales ($)'},{k:'Estimated Daily Miles Driven (range)',ph:'e.g. 50–100'}]},
+      {title:'People',fields:[
+        {k:'# of Employees',t:'number'},{k:'# of Independent Contractors',t:'number'},
+        {k:'# of Non-Driving Employees',t:'number',v:'0'},{k:'Owner\'s License #'},{k:'Owner\'s Date of Birth',t:'date'}]},
+      {title:'Drivers',note:'Add every driver',repeat:'Driver',fields:[
+        {k:'Driver Name'},{k:'License #'},{k:'Date of Birth',t:'date'}]},
+      {title:'Vehicles',repeat:'Vehicle',fields:[
+        {k:'Year / Make / Model'},{k:'VIN'},{k:'Purchase Price ($)'},
+        {k:'Modifications ($ amount and description)',hint:'Racks, lifts, upfits, etc. Put N/A if none.',full:1}]}
+    ]}
+  };
+
+  /* bundle = auto drivers + home property + vehicles, one form */
+  var A=LINES.auto.sections,H=LINES.home.sections;
+  LINES.bundle={title:'Home + auto bundle quote',sections:[
+    {title:'Drivers & people on the policy',note:'Add everyone in your household',repeat:'Person',fields:A[0].fields},
+    {title:'Property',fields:H[1].fields.concat([{k:'Best Phone Number',t:'tel'}])},
+    {title:'Vehicles',repeat:'Vehicle',fields:A[2].fields},
+    {title:'Current coverage',fields:[
+      {k:'Current Home Carrier',ph:'Put N/A if none'},{k:'Current Auto Carrier',ph:'Put N/A if none'},{k:'Desired Effective Date',t:'date'},
+      {k:'SR-22 Filing Required?',t:'select',o:['','No','Yes']},
+      {k:'Current Coverage Limits',t:'textarea',full:1,ph:'Home and auto limits, or N/A if you attach your dec pages below'}]}
+  ]};
+  var current='auto',body=document.getElementById('formBody'),uid=0;
+  function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+  function field(f,prefix){
+    var id=prefix+'-'+slug(f.k),lab=document.createElement('label');
+    lab.className='f'+(f.full?' full':'');lab.htmlFor=id;
+    lab.appendChild(document.createTextNode(f.k));
+    if(f.hint){var sm=document.createElement('small');sm.textContent=f.hint;lab.appendChild(sm)}
+    var el;
+    if(f.t==='select'){el=document.createElement('select');f.o.forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o||'Choose…';el.appendChild(op)})}
+    else if(f.t==='textarea'){el=document.createElement('textarea');el.rows=3}
+    else{el=document.createElement('input');el.type=f.t||'text';if(f.t==='number')el.inputMode='numeric'}
+    el.id=id;el.dataset.k=f.k;el.required=true;if(f.ph)el.placeholder=f.ph;if(f.v)el.value=f.v;
+    var clr=function(){if(el.value.trim())lab.classList.remove('bad')};el.addEventListener('input',clr);el.addEventListener('change',clr);
+    lab.appendChild(el);return lab;
+  }
+  function grid(fields,prefix){var g=document.createElement('div');g.className='fgrid';fields.forEach(function(f){g.appendChild(field(f,prefix))});return g}
+  /* these answers mean a spouse/partner must be on the policy */
+  var PARTNER={'Married':'Spouse','Domestic partner':'Domestic Partner'};
+  function addItem(sec,rep,secId,spouseOf){
+    var n=rep.children.length+1,it=document.createElement('div');it.className='item';
+    var head=document.createElement('div');head.className='item-head';
+    var b=document.createElement('b');head.appendChild(b);
+    if(spouseOf){it.dataset.spouse='Spouse';it._owner=spouseOf;spouseOf._spouse=it}
+    else if(n>1){var rm=document.createElement('button');rm.type='button';rm.className='rm';rm.textContent='Remove';
+      rm.addEventListener('click',function(){if(it._spouse){it._spouse.remove()}it.remove();renumber(rep,sec.repeat)});head.appendChild(rm)}
+    it.appendChild(head);it.appendChild(grid(sec.fields,secId+'-'+(uid++)));
+    /* married = spouse is required, so add them automatically */
+    var ms=it.querySelector('[data-k="Marital Status"]');
+    if(ms){
+      if(spouseOf){ms.disabled=true}
+      else ms.addEventListener('change',function(){
+        var needs=PARTNER[ms.value];
+        if(needs&&!it._spouse){addItem(sec,rep,secId,it)}
+        else if(!needs&&it._spouse){it._spouse.remove();it._spouse=null;renumber(rep,sec.repeat);return}
+        if(needs&&it._spouse){it._spouse.dataset.spouse=needs;it._spouse.querySelector('[data-k="Marital Status"]').value=ms.value;renumber(rep,sec.repeat)}
+      });
+    }
+    if(spouseOf&&spouseOf.nextSibling)rep.insertBefore(it,spouseOf.nextSibling);else rep.appendChild(it);
+    renumber(rep,sec.repeat);
+    return it;
+  }
+  function renumber(rep,label){[].forEach.call(rep.children,function(it,i){it.querySelector('b').textContent=label+' '+(i+1)+(it.dataset.spouse?' · '+it.dataset.spouse+' (required)':'')})}
+  function render(line){
+    body.innerHTML='';
+    LINES[line].sections.forEach(function(sec,si){
+      var s=document.createElement('div');s.className='sec';s.dataset.title=sec.title;
+      var h=document.createElement('div');h.className='sec-head';
+      var h3=document.createElement('h3');h3.textContent=sec.title;h.appendChild(h3);
+      if(sec.note){var p=document.createElement('p');p.textContent=sec.note;h.appendChild(p)}
+      s.appendChild(h);
+      var secId=line+'-s'+si;
+      if(sec.repeat){
+        var rep=document.createElement('div');rep.className='rep';s.appendChild(rep);addItem(sec,rep,secId);
+        var add=document.createElement('button');add.type='button';add.className='btn btn-small add';add.textContent='+ Add another '+sec.repeat.toLowerCase();
+        add.addEventListener('click',function(){addItem(sec,rep,secId)});s.appendChild(add);
+      } else s.appendChild(grid(sec.fields,secId));
+      body.appendChild(s);
+    });
+  }
+  /* keep each line's form so switching tabs doesn't wipe answers */
+  var cache={};
+  function setLine(line){
+    if(!LINES[line])return;
+    if(line===current&&body.children.length)return;
+    if(body.children.length){var frag=document.createDocumentFragment();while(body.firstChild)frag.appendChild(body.firstChild);cache[current]=frag}
+    current=line;
+    if(cache[line]){body.appendChild(cache[line]);delete cache[line]} else render(line);
+    document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected',t.dataset.line===line)});
+    document.getElementById('done').hidden=true;document.getElementById('quoteForm').hidden=false;
+  }
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){setLine(t.dataset.line)})});
+  render('auto');
+
+  /* ---------- dec page files ---------- */
+  function fileWidget(dropId,inputId,listId){
+    var input=document.getElementById(inputId),list=document.getElementById(listId),drop=document.getElementById(dropId),picked=[];
+    function draw(){
+      list.innerHTML='';
+      picked.forEach(function(f,i){
+        var li=document.createElement('li'),s=document.createElement('span');
+        s.textContent=f.name+' · '+(f.size/1024<1024?Math.round(f.size/1024)+' KB':(f.size/1048576).toFixed(1)+' MB');
+        var r=document.createElement('button');r.type='button';r.className='rm';r.textContent='Remove';
+        r.addEventListener('click',function(){picked.splice(i,1);draw()});
+        li.appendChild(s);li.appendChild(r);list.appendChild(li);
+      });
+    }
+    function add(fl){[].forEach.call(fl,function(f){picked.push(f)});draw()}
+    input.addEventListener('change',function(){add(input.files);input.value=''});
+    ['dragenter','dragover'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('over')})});
+    ['dragleave','drop'].forEach(function(ev){drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('over')})});
+    drop.addEventListener('drop',function(e){if(e.dataTransfer&&e.dataTransfer.files)add(e.dataTransfer.files)});
+    return picked;
+  }
+  function copyFrom(preId,msgId){
+    var pre=document.getElementById(preId),msg=document.getElementById(msgId);
+    function sel(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);msg.textContent='Selected. Press Ctrl/Cmd+C to copy.'}
+    try{navigator.clipboard.writeText(pre.textContent).then(function(){msg.textContent='Copied'},sel)}catch(x){sel()}
+  }
+  var picked=fileWidget('drop','decFile','fileList');
+
+  /* ---------- real submissions: sent by FormSubmit (formsubmit.co), which emails them with dec pages attached ---------- */
+  var LIVE=/^https?:$/.test(location.protocol),FORM_TO='tate@khaiserinsurance.com';
+  function send(formName,fields,files,details){
+    if(!LIVE)return Promise.resolve({ok:false});
+    var total=files.reduce(function(a,f){return a+f.size},0);
+    var withFiles=files.length<=3&&total<=9*1048576;
+    var f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/'+FORM_TO;f.enctype='multipart/form-data';f.hidden=true;
+    function put(n,v){var i=document.createElement('input');i.type='hidden';i.name=n;i.value=v||'';f.appendChild(i)}
+    var back=location.origin+location.pathname+'?sent='+formName+(withFiles||!files.length?'':'&nofiles=1')+'#'+(formName==='quote'?'quote':'review');
+    put('_subject',fields.subject);put('_next',back);put('_captcha','false');put('_template','box');
+    var hp=document.createElement('input');hp.type='text';hp.name='_honey';hp.style.display='none';f.appendChild(hp);
+    Object.keys(fields).forEach(function(k){if(k!=='subject')put(k,fields[k])});
+    put('details',details);
+    if(withFiles)files.forEach(function(file,i){
+      var inp=document.createElement('input');inp.type='file';inp.name='dec_page_'+(i+1);
+      var dt=new DataTransfer();dt.items.add(file);inp.files=dt.files;f.appendChild(inp)});
+    try{sessionStorage.setItem('ttb-sent',details)}catch(x){}
+    document.body.appendChild(f);f.submit();
+    return new Promise(function(){}); /* the page leaves for FormSubmit and comes back to the thank-you panel */
+  }
+  function setPanel(panel,res){
+    var eb=panel.querySelector('.eyebrow'),h=panel.querySelector('h3'),p=panel.querySelector('p');
+    if(!panel.dataset.orig)panel.dataset.orig=JSON.stringify([eb.innerHTML,h.innerHTML,p.innerHTML]);
+    var o=JSON.parse(panel.dataset.orig);
+    [].forEach.call(panel.querySelectorAll('[data-fallback]'),function(el){el.hidden=!!res.ok||el.dataset.keepHidden==='1'});
+    if(!res.ok){eb.innerHTML=o[0];h.innerHTML=o[1];p.innerHTML=o[2];return}
+    eb.textContent='Sent';
+    if(res.filesSent){h.textContent="Got it. Tate will reach out soon.";p.textContent="Here's a copy of what you sent."}
+    else{h.textContent="Sent. One more step.";p.innerHTML='Your files were too large to upload here. Please email them to <a class="copyable" href="mailto:tate@khaiserinsurance.com">tate@khaiserinsurance.com</a>.'}
+  }
+  function busyBtn(form,on){var b=form.querySelector('button[type="submit"]');if(!b.dataset.label)b.dataset.label=b.textContent;b.disabled=on;b.textContent=on?'Sending…':b.dataset.label}
+
+  /* ---------- review ---------- */
+  var QUOTE_MAILTO='mailto:tate@khaiserinsurance.com?cc=mustofa@khaiserinsurance.com&subject='+encodeURIComponent('I would like a quote please!'),mailHref=QUOTE_MAILTO;
+  var form=document.getElementById('quoteForm'),done=document.getElementById('done'),err=document.getElementById('formErr');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var nameEl=current==='commercial'?body.querySelector('[data-k="Entity Name"]'):body.querySelector('[data-k="Full Name"]');
+    var missing=[];
+    [].forEach.call(body.querySelectorAll('[data-k]'),function(el){
+      var lab=el.closest('label.f'),v=el.value.trim();
+      var bad=!v||(el.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+      lab.classList.toggle('bad',bad);if(bad)missing.push(el);
+    });
+    if(missing.length){
+      err.textContent=missing.length===1?'Please fill in the highlighted field. Put N/A if it doesn\'t apply.':'Please fill in the '+missing.length+' highlighted fields. Put N/A for anything that doesn\'t apply.';
+      err.hidden=false;missing[0].focus();missing[0].scrollIntoView({block:'center'});return}
+    err.hidden=true;
+    var out=[LINES[current].title.toUpperCase()+' REQUEST · Tate The Broker',''];
+    [].forEach.call(body.querySelectorAll('.sec'),function(sec){
+      out.push('== '+sec.dataset.title+' ==');
+      var items=sec.querySelectorAll('.item');
+      var groups=items.length?[].slice.call(items):[sec];
+      groups.forEach(function(g){
+        if(items.length) out.push('-- '+g.querySelector('.item-head b').textContent+' --');
+        [].forEach.call(g.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(el.value.trim()||'—'))});
+      });
+      out.push('');
+    });
+    out.push('Declarations page: '+(picked.length?picked.map(function(f){return f.name}).join(', ')+' (attached)':'Not attached'));
+    document.getElementById('summary').textContent=out.join('\n');
+    var an=document.getElementById('attachNote');
+    an.hidden=!picked.length;an.dataset.keepHidden=picked.length?'0':'1';
+    document.getElementById('attachNames').textContent=picked.map(function(f){return f.name}).join(', ');
+    mailHref=QUOTE_MAILTO+'&body='+encodeURIComponent(out.join('\n'));
+    var val=function(sel){var el=body.querySelector(sel);return el?el.value.trim():''};
+    busyBtn(form,true);
+    send('quote',{subject:'I would like a quote please!',policy_type:LINES[current].title,
+      name:nameEl.value.trim(),email:val('input[type="email"]'),phone:val('input[type="tel"]')},picked,out.join('\n'))
+    .then(function(res){busyBtn(form,false);setPanel(done,res);form.hidden=true;done.hidden=false;done.scrollIntoView({block:'start'});
+      /* if the site couldn't send it, open their email app with the request ready to go */
+      if(!res.ok)location.href=mailHref});
+  });
+  /* fallback when the site can't send: open a pre-filled email instead */
+  document.addEventListener('click',function(e){if(e.target.id==='mailAgain'){e.preventDefault();location.href=mailHref}});
+  document.getElementById('editBtn').addEventListener('click',function(){done.hidden=true;form.hidden=false;document.getElementById('copyMsg').textContent=''});
+  document.getElementById('copyBtn').addEventListener('click',function(){copyFrom('summary','copyMsg')});
+
+  /* ---------- dec review form ---------- */
+  var rPicked=fileWidget('rDrop','rFile','rFileList');
+  var rForm=document.getElementById('reviewForm'),rDone=document.getElementById('rDone'),rErr=document.getElementById('rErr');
+  [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){var c=function(){if(el.value.trim())el.closest('label.f').classList.remove('bad')};el.addEventListener('input',c);el.addEventListener('change',c)});
+  rForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var miss=[],first=null;
+    [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){
+      var lab=el.closest('label.f'),v=el.value.trim();
+      var bad=!v||(el.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
+      lab.classList.toggle('bad',bad);if(bad&&!first)first=el;
+    });
+    if(first)miss.push('every highlighted field');
+    if(!rPicked.length)miss.unshift('your declarations page');
+    if(miss.length){rErr.textContent='Please add '+miss.join(' and ')+'.';rErr.hidden=false;if(first)first.focus();return}
+    rErr.hidden=true;
+    var names=rPicked.map(function(f){return f.name}).join(', ');
+    var out=['POLICY REVIEW REQUEST · Drop a dec, get my rec',''];
+    [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(el.value.trim()||'—'))});
+    out.push('','Declarations page: '+names+' (attached)');
+    document.getElementById('rSummary').textContent=out.join('\n');
+    document.getElementById('rAttachNames').textContent=names;
+    var v=function(id){return document.getElementById(id).value.trim()};
+    busyBtn(rForm,true);
+    send('policy-review',{subject:'New policy review: '+v('r-name'),policy_type:v('r-type'),name:v('r-name'),email:v('r-email'),phone:v('r-phone'),
+      contact:v('r-contact'),notes:v('r-notes')},rPicked,out.join('\n'))
+    .then(function(res){busyBtn(rForm,false);setPanel(rDone,res);rForm.hidden=true;rDone.hidden=false;rDone.scrollIntoView({block:'start'})});
+  });
+  document.getElementById('rEdit').addEventListener('click',function(){rDone.hidden=true;rForm.hidden=false;document.getElementById('rCopyMsg').textContent=''});
+  document.getElementById('rCopy').addEventListener('click',function(){copyFrom('rSummary','rCopyMsg')});
+
+  /* back from FormSubmit: show the thank-you panel */
+  (function(){
+    var q=new URLSearchParams(location.search),which=q.get('sent');if(!which)return;
+    var isQ=which==='quote',panel=isQ?done:rDone,frm=isQ?form:rForm;
+    var txt='';try{txt=sessionStorage.getItem('ttb-sent')||'';sessionStorage.removeItem('ttb-sent')}catch(x){}
+    document.getElementById(isQ?'summary':'rSummary').textContent=txt;
+    if(isQ){var an=document.getElementById('attachNote');an.hidden=true;an.dataset.keepHidden='1'}
+    setPanel(panel,{ok:true,filesSent:!q.get('nofiles')});
+    if(!txt)panel.querySelector('pre').hidden=true,panel.querySelector('p').textContent='Tate will reach out soon.';
+    frm.hidden=true;panel.hidden=false;
+    history.replaceState(null,'',location.pathname+'#'+(isQ?'quote':'review'));
+  })();
+  show();
+})();
+</script>
+</body>
+</html>
