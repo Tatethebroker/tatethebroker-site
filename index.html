@@ -1090,7 +1090,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     var f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/'+FORM_TO;f.enctype='multipart/form-data';f.hidden=true;
     function put(n,v){var i=document.createElement('input');i.type='hidden';i.name=n;i.value=v||'';f.appendChild(i)}
     var back=location.origin+location.pathname+'?sent='+formName+(withFiles||!files.length?'':'&nofiles=1')+'#'+(formName==='quote'?'quote':'review');
-    put('_subject',fields.subject);put('_cc','mustofa@khaiserinsurance.com');put('_autoresponse',AUTO_REPLY);put('_next',back);put('_captcha','false');put('_template','box');
+    put('_subject',fields.subject);put('_cc','mustofa@khaiserinsurance.com');put('_autoresponse',AUTO_REPLY);put('_next',back);put('_template','box');
     var hp=document.createElement('input');hp.type='text';hp.name='_honey';hp.style.display='none';f.appendChild(hp);
     Object.keys(fields).forEach(function(k){if(k!=='subject')put(k,fields[k])});
     put('details',details);
