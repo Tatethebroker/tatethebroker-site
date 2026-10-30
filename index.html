@@ -1075,6 +1075,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
 
   /* ---------- real submissions: sent by FormSubmit (formsubmit.co), which emails them with dec pages attached ---------- */
   var LIVE=/^https?:$/.test(location.protocol),FORM_TO='tate@khaiserinsurance.com';
+  /* automatic reply emailed to the client after they submit */
+  var AUTO_REPLY='Thanks for sending this over, and for trusting us with your coverage. We\'ll get to work and keep you updated with what we find. Questions in the meantime? Call or text 602-315-0924.\n\n\u2014 Tate Matheny';
   function send(formName,fields,files,details){
     if(!LIVE)return Promise.resolve({ok:false});
     var total=files.reduce(function(a,f){return a+f.size},0);
@@ -1082,7 +1084,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     var f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/'+FORM_TO;f.enctype='multipart/form-data';f.hidden=true;
     function put(n,v){var i=document.createElement('input');i.type='hidden';i.name=n;i.value=v||'';f.appendChild(i)}
     var back=location.origin+location.pathname+'?sent='+formName+(withFiles||!files.length?'':'&nofiles=1')+'#'+(formName==='quote'?'quote':'review');
-    put('_subject',fields.subject);put('_cc','mustofa@khaiserinsurance.com');put('_next',back);put('_captcha','false');put('_template','box');
+    put('_subject',fields.subject);put('_cc','mustofa@khaiserinsurance.com');put('_autoresponse',AUTO_REPLY);put('_next',back);put('_captcha','false');put('_template','box');
     var hp=document.createElement('input');hp.type='text';hp.name='_honey';hp.style.display='none';f.appendChild(hp);
     Object.keys(fields).forEach(function(k){if(k!=='subject')put(k,fields[k])});
     put('details',details);
