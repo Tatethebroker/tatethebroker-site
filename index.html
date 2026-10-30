@@ -247,8 +247,8 @@ header{overflow-x:clip}
 .person{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center}
 .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--rock);color:var(--on-rock);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;box-shadow:0 0 0 5px var(--card),0 0 0 9px #E9ECEE}
 .person .role{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.person .pc{display:grid;gap:2px;margin-top:8px;font-size:.86rem;min-width:0}
-.person .pc a{color:var(--muted);text-decoration:none;overflow-wrap:normal}
+.person .pc{grid-column:1/-1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 14px;padding-top:12px;border-top:1px solid var(--line);font-size:.84rem}
+.person .pc a{color:var(--muted);text-decoration:none;white-space:nowrap}
 .person .pc a:hover{color:inherit;text-decoration:underline}
 @media (max-width:760px){.team{grid-template-columns:1fr}}
 .social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
@@ -672,7 +672,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
       <span class="eyebrow">The team</span>
       <div class="team">
         <div class="person"><img class="avatar" src="tatethebroker-github/tate-matheny.jpg" alt="Tate Matheny" width="72" height="72" loading="lazy"><div><h3>Tate Matheny</h3><div class="role">Broker · Owner</div></div></div>
-        <div class="person"><div class="avatar" aria-hidden="true">M</div><div><h3>Mustofa</h3><div class="role">Senior Account Manager</div><div class="pc"><a href="tel:+14804362945">480-436-2945</a><a href="mailto:mustofa@khaiserinsurance.com">mustofa@<wbr>khaiserinsurance.com</a></div></div></div>
+        <div class="person"><div class="avatar" aria-hidden="true">M</div><div><h3>Mustofa</h3><div class="role">Senior Account Manager</div></div><div class="pc"><a href="tel:+14804362945">480-436-2945</a><a href="mailto:mustofa@khaiserinsurance.com">mustofa@khaiserinsurance.com</a></div></div>
       </div>
       <span class="eyebrow">Follow along</span>
       <div class="social">
