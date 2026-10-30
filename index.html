@@ -247,6 +247,9 @@ header{overflow-x:clip}
 .person{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;display:grid;grid-template-columns:72px minmax(0,1fr);gap:18px;align-items:center}
 .avatar{width:72px;height:72px;border-radius:50%;object-fit:cover;background:var(--rock);color:var(--on-rock);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:1.5rem;box-shadow:0 0 0 5px var(--card),0 0 0 9px #E9ECEE}
 .person .role{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.person .pc{display:grid;gap:2px;margin-top:8px;font-size:.86rem;min-width:0}
+.person .pc a{color:var(--muted);text-decoration:none;overflow-wrap:normal}
+.person .pc a:hover{color:inherit;text-decoration:underline}
 @media (max-width:760px){.team{grid-template-columns:1fr}}
 .social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 @media (max-width:520px){.social{grid-template-columns:1fr}}
@@ -285,6 +288,7 @@ form{display:grid;gap:24px}
 .same input{width:18px;height:18px;min-height:0;padding:0;margin:0;flex:0 0 auto;accent-color:var(--sage)}
 label.f{display:grid;gap:6px;font-weight:600;font-size:.9rem;min-width:0}
 label.f small{font-weight:400;color:var(--muted)}
+.privacy{color:var(--muted);font-size:.86rem;margin:0}
 label.f.bad input,label.f.bad select,label.f.bad textarea{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
 .req-note{color:var(--muted);font-size:.9rem;margin:0 0 14px}
 input,select,textarea{font:inherit;font-weight:400;padding:11px 13px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);width:100%}
@@ -668,7 +672,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
       <span class="eyebrow">The team</span>
       <div class="team">
         <div class="person"><img class="avatar" src="tatethebroker-github/tate-matheny.jpg" alt="Tate Matheny" width="72" height="72" loading="lazy"><div><h3>Tate Matheny</h3><div class="role">Broker · Owner</div></div></div>
-        <div class="person"><div class="avatar" aria-hidden="true">M</div><div><h3>Mustofa</h3><div class="role">Senior Account Manager</div></div></div>
+        <div class="person"><div class="avatar" aria-hidden="true">M</div><div><h3>Mustofa</h3><div class="role">Senior Account Manager</div><div class="pc"><a href="tel:+14804362945">480-436-2945</a><a href="mailto:mustofa@khaiserinsurance.com">mustofa@<wbr>khaiserinsurance.com</a></div></div></div>
       </div>
       <span class="eyebrow">Follow along</span>
       <div class="social">
@@ -721,6 +725,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
           </div>
         </div>
         <p class="err" id="rErr" hidden></p>
+        <p class="privacy">🔒 Your information is only used to review your insurance. We never sell or share it.</p>
         <div class="row"><button class="btn btn-rock" type="submit">Get my rec</button><span style="color:var(--muted);font-size:.88rem">A review is an opinion on your current policy. Actual savings depend on a full quote.</span></div>
       </form>
       <div class="sec done" id="rDone" hidden>
@@ -771,6 +776,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
           <ul class="files" id="fileList"></ul>
         </div>
         <p class="err" id="formErr" hidden></p>
+        <p class="privacy">🔒 Your information is only used to quote your insurance. We never sell or share it.</p>
         <div class="row"><button class="btn btn-rock" type="submit">Send my request</button><span style="color:var(--muted);font-size:.88rem">Your request goes straight to Tate. No email app needed.</span></div>
       </form>
       <div class="sec done" id="done" hidden>
