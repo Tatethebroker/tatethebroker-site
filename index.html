@@ -278,6 +278,11 @@ form{display:grid;gap:24px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fgrid .full{grid-column:1/-1}
 @media (max-width:600px){.fgrid{grid-template-columns:1fr}}
+.addr{display:grid;gap:8px;min-width:0}.addr-head{font-weight:600;font-size:.9rem}.addr-head small{display:block;font-weight:400;color:var(--muted)}
+.addr-grid{grid-template-columns:minmax(0,2fr) minmax(0,.7fr) minmax(0,1fr)}
+@media (max-width:600px){.addr-grid{grid-template-columns:1fr}}
+.same{display:flex;gap:10px;align-items:center;justify-content:flex-start;font-size:.9rem;color:var(--muted);cursor:pointer;width:fit-content}
+.same input{width:18px;height:18px;min-height:0;padding:0;margin:0;flex:0 0 auto;accent-color:var(--sage)}
 label.f{display:grid;gap:6px;font-weight:600;font-size:.9rem;min-width:0}
 label.f small{font-weight:400;color:var(--muted)}
 label.f.bad input,label.f.bad select,label.f.bad textarea{border-color:var(--err);box-shadow:0 0 0 1px var(--err)}
@@ -706,7 +711,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
           <div class="sec-head"><h3>About you</h3></div>
           <div class="fgrid">
             <label class="f full" for="r-name">Full Name<input id="r-name" data-k="Full Name" autocomplete="name"></label>
-            <label class="f" for="r-phone">Phone Number<input id="r-phone" data-k="Phone Number" type="tel" autocomplete="tel"></label>
+            <label class="f" for="r-phone">Phone Number<input id="r-phone" data-k="Phone Number" type="tel" autocomplete="tel" placeholder="602-555-1234"></label>
             <label class="f" for="r-email">Email Address<input id="r-email" data-k="Email Address" type="email" autocomplete="email"></label>
             <label class="f" for="r-type">Policy type
               <select id="r-type" data-k="Policy Type"><option value="">Choose…</option><option>Home</option><option>Auto</option><option>Home &amp; Auto</option><option>Rental property</option><option>Commercial</option><option>Other</option></select></label>
@@ -872,7 +877,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
         {k:'Email Address',t:'email'},{k:'Occupation'},{k:'Education Level',t:'select',o:EDU},
         {k:'Driver\'s License Number'},{k:'License State',v:'AZ'}]},
       {title:'Household',fields:[
-        {k:'Current Address',full:1,ph:'Street, unit #, city, state, ZIP'},
+        {k:'Current Address',t:'addr'},
         {k:'Rent or Own Home',t:'select',o:['','Own','Rent']},{k:'Best Phone Number',t:'tel'}]},
       {title:'Vehicles',repeat:'Vehicle',fields:[
         {k:'Vehicle VIN',full:1,ph:'17 characters'},
@@ -888,15 +893,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
         {k:'Full Name',full:1},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
         {k:'Occupation'},{k:'Email Address',t:'email'},{k:'Phone Number',t:'tel'}]},
       {title:'Property',fields:[
-        {k:'Full Property Address',full:1,ph:'Street, unit #, city, state, ZIP'},
-        {k:'Full Mailing Address',full:1,ph:'Type "Same" if same as property address'},
+        {k:'Full Property Address',t:'addr'},
+        {k:'Full Mailing Address',t:'addr',same:'Same as property address'},
         {k:'Year Roof Replaced',t:'number',ph:'e.g. 2018'},{k:'Year A/C Replaced',t:'number',ph:'e.g. 2021'},
         {k:'Other Major Updates',t:'textarea',full:1,ph:'Plumbing, electrical, remodels, pool, solar... or N/A'}]}
     ]},
     commercial:{title:'Commercial auto quote',sections:[
       {title:'Business',fields:[
         {k:'Desired Effective Date',t:'date'},{k:'Entity Name'},{k:'EIN #',ph:'XX-XXXXXXX'},{k:'ADOT # (if applicable)',ph:'Put N/A if none'},
-        {k:'Mailing Address',full:1},{k:'Garaging Address',full:1,ph:'Where the vehicles are parked overnight'},
+        {k:'Mailing Address',t:'addr'},{k:'Garaging Address',t:'addr',hint:'Where the vehicles are parked overnight',same:'Same as mailing address'},
         {k:'Year Business Started',t:'number'},{k:'Years of Experience in the Industry',t:'number'},
         {k:'Estimated Gross Sales ($)'},{k:'Estimated Daily Miles Driven (range)',ph:'e.g. 50–100'}]},
       {title:'People',fields:[
@@ -923,7 +928,54 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
   ]};
   var current='auto',body=document.getElementById('formBody'),uid=0;
   function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+  /* address = street, city, state, ZIP; combined into one line for the email */
+  function addrField(f,prefix){
+    var w=document.createElement('div');w.className='addr full';
+    var h=document.createElement('div');h.className='addr-head';h.textContent=f.k;
+    if(f.hint){var sm=document.createElement('small');sm.textContent=f.hint;h.appendChild(sm)}
+    w.appendChild(h);
+    var hid=document.createElement('input');hid.type='hidden';hid.dataset.k=f.k;hid.dataset.addr='1';w.appendChild(hid);
+    var g=document.createElement('div');g.className='fgrid addr-grid';
+    [{k:'Street Address',full:1,ph:'Street and unit #'},{k:'City'},{k:'State',v:'AZ'},{k:'ZIP Code',ph:'5 digits'}].forEach(function(p){
+      var lab=field(p,prefix+'-'+slug(f.k)),el=lab.querySelector('input');
+      el.removeAttribute('data-k');el.dataset.part=p.k;
+      if(p.k==='State'){el.maxLength=2;el.style.textTransform='uppercase'}
+      if(p.k==='ZIP Code'){el.inputMode='numeric';el.maxLength=10}
+      g.appendChild(lab)});
+    if(f.same){
+      var sl=document.createElement('label');sl.className='same';
+      var cb=document.createElement('input');cb.type='checkbox';cb.dataset.label=f.same;
+      sl.appendChild(cb);sl.appendChild(document.createTextNode(f.same));w.appendChild(sl);
+      cb.addEventListener('change',function(){g.hidden=cb.checked;
+        [].forEach.call(g.querySelectorAll('[data-part]'),function(el){el.disabled=cb.checked;el.closest('label.f').classList.remove('bad')})});
+    }
+    w.appendChild(g);return w;
+  }
+  function composeAddr(root){
+    [].forEach.call(root.querySelectorAll('.addr'),function(w){
+      var hid=w.querySelector('[data-addr]'),cb=w.querySelector('.same input');
+      if(cb&&cb.checked){hid.value=cb.dataset.label;return}
+      var p={};[].forEach.call(w.querySelectorAll('[data-part]'),function(el){p[el.dataset.part]=el.value.trim()});
+      hid.value=p['Street Address']+', '+p['City']+', '+p['State'].toUpperCase()+' '+p['ZIP Code'];
+    });
+  }
+  /* checks: required, email, 10-digit phone, 2-letter state, 5-digit ZIP */
+  function invalid(el){
+    var v=el.value.trim();if(!v)return true;
+    if(el.type==='email')return !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    if(el.type==='tel')return v.replace(/\D/g,'').length!==10;
+    if(el.dataset.part==='State')return !/^[A-Za-z]{2}$/.test(v);
+    if(el.dataset.part==='ZIP Code')return !/^\d{5}(-\d{4})?$/.test(v);
+    return false;
+  }
+  /* dates go out as MM/DD/YYYY */
+  function fmt(el){var v=el.value.trim();if(el.type==='date'&&/^\d{4}-\d{2}-\d{2}$/.test(v)){var d=v.split('-');return d[1]+'/'+d[2]+'/'+d[0]}return v}
+  /* phone numbers get hyphens as they're typed: 602-315-0924 */
+  document.addEventListener('input',function(e){var t=e.target;if(!t||t.type!=='tel')return;
+    var d=t.value.replace(/\D/g,'');if(d.length===11&&d.charAt(0)==='1')d=d.slice(1);d=d.slice(0,10);
+    t.value=d.length>6?d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6):d.length>3?d.slice(0,3)+'-'+d.slice(3):d});
   function field(f,prefix){
+    if(f.t==='addr')return addrField(f,prefix);
     var id=prefix+'-'+slug(f.k),lab=document.createElement('label');
     lab.className='f'+(f.full?' full':'');lab.htmlFor=id;
     lab.appendChild(document.createTextNode(f.k));
@@ -932,7 +984,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     if(f.t==='select'){el=document.createElement('select');f.o.forEach(function(o){var op=document.createElement('option');op.value=o;op.textContent=o||'Choose…';el.appendChild(op)})}
     else if(f.t==='textarea'){el=document.createElement('textarea');el.rows=3}
     else{el=document.createElement('input');el.type=f.t||'text';if(f.t==='number')el.inputMode='numeric'}
-    el.id=id;el.dataset.k=f.k;el.required=true;if(f.ph)el.placeholder=f.ph;if(f.v)el.value=f.v;
+    el.id=id;el.dataset.k=f.k;el.required=true;if(f.ph)el.placeholder=f.ph;else if(f.t==='tel')el.placeholder='602-555-1234';if(f.v)el.value=f.v;
     var clr=function(){if(el.value.trim())lab.classList.remove('bad')};el.addEventListener('input',clr);el.addEventListener('change',clr);
     lab.appendChild(el);return lab;
   }
@@ -1030,7 +1082,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     var f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/'+FORM_TO;f.enctype='multipart/form-data';f.hidden=true;
     function put(n,v){var i=document.createElement('input');i.type='hidden';i.name=n;i.value=v||'';f.appendChild(i)}
     var back=location.origin+location.pathname+'?sent='+formName+(withFiles||!files.length?'':'&nofiles=1')+'#'+(formName==='quote'?'quote':'review');
-    put('_subject',fields.subject);put('_next',back);put('_captcha','false');put('_template','box');
+    put('_subject',fields.subject);put('_cc','mustofa@khaiserinsurance.com');put('_next',back);put('_captcha','false');put('_template','box');
     var hp=document.createElement('input');hp.type='text';hp.name='_honey';hp.style.display='none';f.appendChild(hp);
     Object.keys(fields).forEach(function(k){if(k!=='subject')put(k,fields[k])});
     put('details',details);
@@ -1060,15 +1112,14 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     e.preventDefault();
     var nameEl=current==='commercial'?body.querySelector('[data-k="Entity Name"]'):body.querySelector('[data-k="Full Name"]');
     var missing=[];
-    [].forEach.call(body.querySelectorAll('[data-k]'),function(el){
-      var lab=el.closest('label.f'),v=el.value.trim();
-      var bad=!v||(el.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
-      lab.classList.toggle('bad',bad);if(bad)missing.push(el);
+    [].forEach.call(body.querySelectorAll('[data-k]:not([type="hidden"]),[data-part]'),function(el){
+      if(el.disabled)return;
+      var bad=invalid(el);el.closest('label.f').classList.toggle('bad',bad);if(bad)missing.push(el);
     });
     if(missing.length){
-      err.textContent=missing.length===1?'Please fill in the highlighted field. Put N/A if it doesn\'t apply.':'Please fill in the '+missing.length+' highlighted fields. Put N/A for anything that doesn\'t apply.';
+      err.textContent=(missing.length===1?'Please fill in or fix the highlighted field.':'Please fill in or fix the '+missing.length+' highlighted fields.')+' Phone numbers need 10 digits, ZIP codes 5 digits. Put N/A for anything that doesn\'t apply.';
       err.hidden=false;missing[0].focus();missing[0].scrollIntoView({block:'center'});return}
-    err.hidden=true;
+    err.hidden=true;composeAddr(body);
     var out=[LINES[current].title.toUpperCase()+' REQUEST · Tate The Broker',''];
     [].forEach.call(body.querySelectorAll('.sec'),function(sec){
       out.push('== '+sec.dataset.title+' ==');
@@ -1076,7 +1127,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
       var groups=items.length?[].slice.call(items):[sec];
       groups.forEach(function(g){
         if(items.length) out.push('-- '+g.querySelector('.item-head b').textContent+' --');
-        [].forEach.call(g.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(el.value.trim()||'—'))});
+        [].forEach.call(g.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(fmt(el)||'—'))});
       });
       out.push('');
     });
@@ -1107,9 +1158,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     e.preventDefault();
     var miss=[],first=null;
     [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){
-      var lab=el.closest('label.f'),v=el.value.trim();
-      var bad=!v||(el.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v));
-      lab.classList.toggle('bad',bad);if(bad&&!first)first=el;
+      var bad=invalid(el);el.closest('label.f').classList.toggle('bad',bad);if(bad&&!first)first=el;
     });
     if(first)miss.push('every highlighted field');
     if(!rPicked.length)miss.unshift('your declarations page');
@@ -1117,7 +1166,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     rErr.hidden=true;
     var names=rPicked.map(function(f){return f.name}).join(', ');
     var out=['POLICY REVIEW REQUEST · Drop a dec, get my rec',''];
-    [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(el.value.trim()||'—'))});
+    [].forEach.call(rForm.querySelectorAll('[data-k]'),function(el){out.push('• '+el.dataset.k+': '+(fmt(el)||'—'))});
     out.push('','Declarations page: '+names+' (attached)');
     document.getElementById('rSummary').textContent=out.join('\n');
     document.getElementById('rAttachNames').textContent=names;
