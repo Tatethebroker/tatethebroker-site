@@ -1088,7 +1088,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     mailHref=QUOTE_MAILTO+'&body='+encodeURIComponent(out.join('\n'));
     var val=function(sel){var el=body.querySelector(sel);return el?el.value.trim():''};
     busyBtn(form,true);
-    send('quote',{subject:'I would like a quote please!',policy_type:LINES[current].title,
+    send('quote',{subject:'I would like a quote please! · '+LINES[current].title.replace(/ quote$/i,'')+' · '+nameEl.value.trim(),policy_type:LINES[current].title,
       name:nameEl.value.trim(),email:val('input[type="email"]'),phone:val('input[type="tel"]')},picked,out.join('\n'))
     .then(function(res){busyBtn(form,false);setPanel(done,res);form.hidden=true;done.hidden=false;done.scrollIntoView({block:'start'});
       /* if the site couldn't send it, open their email app with the request ready to go */
@@ -1123,7 +1123,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     document.getElementById('rAttachNames').textContent=names;
     var v=function(id){return document.getElementById(id).value.trim()};
     busyBtn(rForm,true);
-    send('policy-review',{subject:'New policy review: '+v('r-name'),policy_type:v('r-type'),name:v('r-name'),email:v('r-email'),phone:v('r-phone'),
+    send('policy-review',{subject:'New policy review: '+v('r-type')+' · '+v('r-name'),policy_type:v('r-type'),name:v('r-name'),email:v('r-email'),phone:v('r-phone'),
       contact:v('r-contact'),notes:v('r-notes')},rPicked,out.join('\n'))
     .then(function(res){busyBtn(rForm,false);setPanel(rDone,res);rForm.hidden=true;rDone.hidden=false;rDone.scrollIntoView({block:'start'})});
   });
