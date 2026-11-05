@@ -1083,8 +1083,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
   var LIVE=/^https?:$/.test(location.protocol),FORM_TO='tate@khaiserinsurance.com';
   /* automatic reply emailed to the client after they submit */
   var AUTO_REPLY='Thanks for sending this over, and for trusting us with your coverage. We\'ll get to work and keep you updated with what we find. Questions in the meantime? Call or text 602-315-0924.\n\n\u2014 Tate Matheny';
+  /* check FormSubmit is up before leaving the page; if it's down, fall back to email so no lead is lost */
+  function reach(){var ac=new AbortController(),t=setTimeout(function(){ac.abort()},6000);
+    return fetch('https://formsubmit.co/?ping='+Date.now(),{mode:'no-cors',cache:'no-store',signal:ac.signal})
+      .then(function(){clearTimeout(t);return true},function(){clearTimeout(t);return false})}
   function send(formName,fields,files,details){
     if(!LIVE)return Promise.resolve({ok:false});
+    return reach().then(function(up){return up?sendNow(formName,fields,files,details):{ok:false}});
+  }
+  function sendNow(formName,fields,files,details){
     var total=files.reduce(function(a,f){return a+f.size},0);
     var withFiles=files.length<=3&&total<=9*1048576;
     var f=document.createElement('form');f.method='POST';f.action='https://formsubmit.co/'+FORM_TO;f.enctype='multipart/form-data';f.hidden=true;
@@ -1182,7 +1189,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     busyBtn(rForm,true);
     send('policy-review',{subject:'New policy review: '+v('r-type')+' · '+v('r-name'),policy_type:v('r-type'),name:v('r-name'),email:v('r-email'),phone:v('r-phone'),
       contact:v('r-contact'),notes:v('r-notes')},rPicked,out.join('\n'))
-    .then(function(res){busyBtn(rForm,false);setPanel(rDone,res);rForm.hidden=true;rDone.hidden=false;rDone.scrollIntoView({block:'start'})});
+    .then(function(res){busyBtn(rForm,false);setPanel(rDone,res);rForm.hidden=true;rDone.hidden=false;rDone.scrollIntoView({block:'start'});
+      if(!res.ok)location.href='mailto:tate@khaiserinsurance.com?cc=mustofa@khaiserinsurance.com&subject='+encodeURIComponent('New policy review: '+v('r-name'))+'&body='+encodeURIComponent(out.join('\n'))});
   });
   document.getElementById('rEdit').addEventListener('click',function(){rDone.hidden=true;rForm.hidden=false;document.getElementById('rCopyMsg').textContent=''});
   document.getElementById('rCopy').addEventListener('click',function(){copyFrom('rSummary','rCopyMsg')});
