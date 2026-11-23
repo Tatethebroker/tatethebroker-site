@@ -288,6 +288,7 @@ form{display:grid;gap:24px}
 .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fgrid .full{grid-column:1/-1}
 @media (max-width:600px){.fgrid{grid-template-columns:1fr}}
+.fgrid{align-items:start}
 .addr{display:grid;gap:8px;min-width:0}.addr-head{font-weight:600;font-size:.9rem}.addr-head small{display:block;font-weight:400;color:var(--muted)}
 .addr-grid{grid-template-columns:minmax(0,2fr) minmax(0,.7fr) minmax(0,1fr)}
 @media (max-width:600px){.addr-grid{grid-template-columns:1fr}}
@@ -887,8 +888,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
   var LINES={
     auto:{title:'Auto quote',sections:[
       {title:'Drivers',note:'Add everyone in your household who drives',repeat:'Driver',fields:[
-        {k:'Full Name',full:1},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
-        {k:'Email Address',t:'email'},{k:'Occupation'},{k:'Education Level',t:'select',o:EDU},
+        {k:'First Name'},{k:'Last Name'},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
+        {k:'Email Address',t:'email'},{k:'Occupation',hint:'Be specific, e.g. Registered Nurse or Electrician',ph:'e.g. Restaurant Manager'},{k:'Education Level',t:'select',o:EDU},
         {k:'Driver\'s License Number'},{k:'License State',v:'AZ'}]},
       {title:'Household',fields:[
         {k:'Current Address',t:'addr'},
@@ -904,8 +905,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     ]},
     home:{title:'Home quote',sections:[
       {title:'People on the policy',note:'Add everyone going on the policy',repeat:'Person',fields:[
-        {k:'Full Name',full:1},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
-        {k:'Occupation'},{k:'Email Address',t:'email'},{k:'Phone Number',t:'tel'}]},
+        {k:'First Name'},{k:'Last Name'},{k:'Marital Status',t:'select',o:MAR},{k:'Date of Birth',t:'date'},
+        {k:'Occupation',hint:'Be specific, e.g. Registered Nurse or Electrician',ph:'e.g. Restaurant Manager'},{k:'Email Address',t:'email'},{k:'Phone Number',t:'tel'}]},
       {title:'Property',fields:[
         {k:'Full Property Address',t:'addr'},
         {k:'Full Mailing Address',t:'addr',same:'Same as property address'},
@@ -922,7 +923,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
         {k:'# of Employees',t:'number'},{k:'# of Independent Contractors',t:'number'},
         {k:'# of Non-Driving Employees',t:'number',v:'0'},{k:'Owner\'s License #'},{k:'Owner\'s Date of Birth',t:'date'}]},
       {title:'Drivers',note:'Add every driver',repeat:'Driver',fields:[
-        {k:'Driver Name'},{k:'License #'},{k:'Date of Birth',t:'date'}]},
+        {k:'First Name'},{k:'Last Name'},{k:'License #'},{k:'Date of Birth',t:'date'}]},
       {title:'Vehicles',repeat:'Vehicle',fields:[
         {k:'Year / Make / Model'},{k:'VIN'},{k:'Purchase Price ($)'},
         {k:'Modifications ($ amount and description)',hint:'Racks, lifts, upfits, etc. Put N/A if none.',full:1}]}
@@ -974,12 +975,16 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     });
   }
   /* checks: required, email, 10-digit phone, 2-letter state, 5-digit ZIP */
+  /* job titles too vague for carriers to rate */
+  var VAGUE=['employed','self employed','self-employed','selfemployed','work','working','job','business','business owner','owner','n/a','na','none','yes','no','full time','part time','fulltime','parttime','other','manager','sales'];
   function invalid(el){
     var v=el.value.trim();if(!v)return true;
     if(el.type==='email')return !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
     if(el.type==='tel')return v.replace(/\D/g,'').length!==10;
     if(el.dataset.part==='State')return !/^[A-Za-z]{2}$/.test(v);
     if(el.dataset.part==='ZIP Code')return !/^\d{5}(-\d{4})?$/.test(v);
+    if(el.dataset.k==='Last Name')return v.replace(/[^A-Za-z]/g,'').length<2;
+    if(el.dataset.k==='Occupation')return v.length<3||VAGUE.indexOf(v.toLowerCase().replace(/\s+/g,' '))>-1;
     return false;
   }
   /* dates go out as MM/DD/YYYY */
@@ -1133,14 +1138,15 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
   var form=document.getElementById('quoteForm'),done=document.getElementById('done'),err=document.getElementById('formErr');
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var nameEl=current==='commercial'?body.querySelector('[data-k="Entity Name"]'):body.querySelector('[data-k="Full Name"]');
+    var fn=body.querySelector('[data-k="First Name"]'),ln=body.querySelector('[data-k="Last Name"]');
+    var nameEl=current==='commercial'?body.querySelector('[data-k="Entity Name"]'):{value:((fn?fn.value:'')+' '+(ln?ln.value:'')).trim()};
     var missing=[];
     [].forEach.call(body.querySelectorAll('[data-k]:not([type="hidden"]),[data-part]'),function(el){
       if(el.disabled)return;
       var bad=invalid(el);el.closest('label.f').classList.toggle('bad',bad);if(bad)missing.push(el);
     });
     if(missing.length){
-      err.textContent=(missing.length===1?'Please fill in or fix the highlighted field.':'Please fill in or fix the '+missing.length+' highlighted fields.')+' Phone numbers need 10 digits, ZIP codes 5 digits. Put N/A for anything that doesn\'t apply.';
+      err.textContent=(missing.length===1?'Please fill in or fix the highlighted field.':'Please fill in or fix the '+missing.length+' highlighted fields.')+' Phone numbers need 10 digits, ZIP codes 5 digits, and job titles need to be specific. Put N/A for anything that doesn\'t apply.';
       err.hidden=false;missing[0].focus();missing[0].scrollIntoView({block:'center'});return}
     err.hidden=true;composeAddr(body);
     var out=[LINES[current].title.toUpperCase()+' REQUEST · Tate The Broker',''];
