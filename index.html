@@ -723,7 +723,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
         <div class="sec">
           <div class="sec-head"><h3>About you</h3></div>
           <div class="fgrid">
-            <label class="f full" for="r-name">Full Name<input id="r-name" data-k="Full Name" autocomplete="name"></label>
+            <label class="f" for="r-first">First Name<input id="r-first" data-k="First Name" autocomplete="given-name"></label>
+            <label class="f" for="r-last">Last Name<input id="r-last" data-k="Last Name" autocomplete="family-name"></label>
             <label class="f" for="r-phone">Phone Number<input id="r-phone" data-k="Phone Number" type="tel" autocomplete="tel" placeholder="602-555-1234"></label>
             <label class="f" for="r-email">Email Address<input id="r-email" data-k="Email Address" type="email" autocomplete="email"></label>
             <label class="f" for="r-type">Policy type
@@ -1201,10 +1202,10 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     document.getElementById('rAttachNames').textContent=names;
     var v=function(id){return document.getElementById(id).value.trim()};
     busyBtn(rForm,true);
-    send('policy-review',{subject:'New policy review: '+v('r-type')+' · '+v('r-name'),policy_type:v('r-type'),name:v('r-name'),email:v('r-email'),phone:v('r-phone'),
+    send('policy-review',{subject:'New policy review: '+v('r-type')+' · '+v('r-first')+' '+v('r-last'),policy_type:v('r-type'),name:v('r-first')+' '+v('r-last'),email:v('r-email'),phone:v('r-phone'),
       contact:v('r-contact'),notes:v('r-notes')},rPicked,out.join('\n'))
     .then(function(res){busyBtn(rForm,false);setPanel(rDone,res);rForm.hidden=true;rDone.hidden=false;rDone.scrollIntoView({block:'start'});
-      if(!res.ok)location.href='mailto:tate@khaiserinsurance.com?cc=mustofa@khaiserinsurance.com&subject='+encodeURIComponent('New policy review: '+v('r-name'))+'&body='+encodeURIComponent(out.join('\n'))});
+      if(!res.ok)location.href='mailto:tate@khaiserinsurance.com?cc=mustofa@khaiserinsurance.com&subject='+encodeURIComponent('New policy review: '+v('r-first')+' '+v('r-last'))+'&body='+encodeURIComponent(out.join('\n'))});
   });
   document.getElementById('rEdit').addEventListener('click',function(){rDone.hidden=true;rForm.hidden=false;document.getElementById('rCopyMsg').textContent=''});
   document.getElementById('rCopy').addEventListener('click',function(){copyFrom('rSummary','rCopyMsg')});
