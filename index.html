@@ -290,7 +290,7 @@ form{display:grid;gap:24px}
 @media (max-width:600px){.fgrid{grid-template-columns:1fr}}
 .fgrid{align-items:start}
 .addr{display:grid;gap:8px;min-width:0}.addr-head{font-weight:600;font-size:.9rem}.addr-head small{display:block;font-weight:400;color:var(--muted)}
-.addr-grid{grid-template-columns:minmax(0,2fr) minmax(0,.7fr) minmax(0,1fr)}
+.addr-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr) minmax(0,.6fr) minmax(0,.9fr)}
 @media (max-width:600px){.addr-grid{grid-template-columns:1fr}}
 .same{display:flex;gap:10px;align-items:center;justify-content:flex-start;font-size:.9rem;color:var(--muted);cursor:pointer;width:fit-content}
 .same input{width:18px;height:18px;min-height:0;padding:0;margin:0;flex:0 0 auto;accent-color:var(--sage)}
@@ -952,11 +952,12 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     w.appendChild(h);
     var hid=document.createElement('input');hid.type='hidden';hid.dataset.k=f.k;hid.dataset.addr='1';w.appendChild(hid);
     var g=document.createElement('div');g.className='fgrid addr-grid';
-    [{k:'Street Address',full:1,ph:'Street and unit #'},{k:'City'},{k:'State',v:'AZ'},{k:'ZIP Code',ph:'5 digits'}].forEach(function(p){
+    [{k:'Street Address',full:1,ph:'e.g. 123 Main St'},{k:'Apt / Unit #',ph:'Optional'},{k:'City'},{k:'State',v:'AZ'},{k:'ZIP Code',ph:'5 digits'}].forEach(function(p){
       var lab=field(p,prefix+'-'+slug(f.k)),el=lab.querySelector('input');
       el.removeAttribute('data-k');el.dataset.part=p.k;
       if(p.k==='State'){el.maxLength=2;el.style.textTransform='uppercase'}
       if(p.k==='ZIP Code'){el.inputMode='numeric';el.maxLength=10}
+      if(p.k==='Apt / Unit #')el.required=false;
       g.appendChild(lab)});
     if(f.same){
       var sl=document.createElement('label');sl.className='same';
@@ -972,13 +973,14 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
       var hid=w.querySelector('[data-addr]'),cb=w.querySelector('.same input');
       if(cb&&cb.checked){hid.value=cb.dataset.label;return}
       var p={};[].forEach.call(w.querySelectorAll('[data-part]'),function(el){p[el.dataset.part]=el.value.trim()});
-      hid.value=p['Street Address']+', '+p['City']+', '+p['State'].toUpperCase()+' '+p['ZIP Code'];
+      hid.value=p['Street Address']+(p['Apt / Unit #']?', '+p['Apt / Unit #']:'')+', '+p['City']+', '+p['State'].toUpperCase()+' '+p['ZIP Code'];
     });
   }
   /* checks: required, email, 10-digit phone, 2-letter state, 5-digit ZIP */
   /* job titles too vague for carriers to rate */
   var VAGUE=['employed','self employed','self-employed','selfemployed','work','working','job','business','business owner','owner','n/a','na','none','yes','no','full time','part time','fulltime','parttime','other','manager','sales'];
   function invalid(el){
+    if(el.dataset.part==='Apt / Unit #')return false; /* the only optional box */
     var v=el.value.trim();if(!v)return true;
     if(el.type==='email')return !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
     if(el.type==='tel')return v.replace(/\D/g,'').length!==10;
