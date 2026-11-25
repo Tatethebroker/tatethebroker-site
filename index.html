@@ -849,6 +849,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
   var nav=document.getElementById('nav'),mb=document.getElementById('menuBtn');
   function show(){
     var id=(location.hash||'#home').slice(1);
+    /* each quote tab has its own link: #quote-auto, #quote-home, #quote-bundle, #quote-commercial */
+    if(id.indexOf('quote-')===0){var ql=id.slice(6);id='quote';if(LINES[ql])setLine(ql)}
+    if(id==='quote'&&history.replaceState)history.replaceState(null,'','#quote-'+current);
     if(!views.some(function(v){return v.dataset.view===id})) id='home';
     views.forEach(function(v){v.hidden=v.dataset.view!==id});
     links.forEach(function(a){a.getAttribute('href')==='#'+id?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
@@ -1064,6 +1067,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--rock);border-col
     if(cache[line]){body.appendChild(cache[line]);delete cache[line]} else render(line);
     document.querySelectorAll('.tab').forEach(function(t){t.setAttribute('aria-selected',t.dataset.line===line)});
     document.getElementById('done').hidden=true;document.getElementById('quoteForm').hidden=false;
+    if(location.hash.indexOf('#quote')===0&&history.replaceState)history.replaceState(null,'','#quote-'+line);
   }
   document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){setLine(t.dataset.line)})});
   render('auto');
